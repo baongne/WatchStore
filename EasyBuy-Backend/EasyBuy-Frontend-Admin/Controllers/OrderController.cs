@@ -60,5 +60,13 @@ namespace EasyBuy_Frontend_Admin.Controllers
             }
             return Json(new { success = false, message = "Có lỗi xảy ra khi chỉnh sửa." });
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete(int id)
+		{
+			await _orderService.DeleteOrderAsync(id);
+
+			return Ok();
+		}
+	}
 }

@@ -124,12 +124,32 @@
                                     </td>
                                     <td class="table-controls d-flex justify-content-center align-items-center pt-5">
                                         <li>
-                                        <a href="@Url.Action("Show", "Order", new { id = order.Id })" class="bs-tooltip view-detail" data-bs-toggle="tooltip" data-bs-placement="top">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                <circle cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </a>
+                                            <a href="@Url.Action("Show", "Order", new { id = order.Id })"
+                                               class="bs-tooltip show" data-bs-toggle="tooltip"
+                                               data-bs-placement="top">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-eye py-1 br-6 mb-1">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-order-id="@order.Id"
+                                               class="bs-tooltip delete" data-bs-toggle="tooltip"
+                                               data-bs-placement="top">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round"
+                                                     stroke-linejoin="round"
+                                                     class="feather feather-trash p-1 br-6 mb-1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </a>
+
                                         </li>
                                     </td>
                                 </tr>
@@ -223,6 +243,52 @@
                     table.rows().show(); 
                 });
             }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            let orderIdToDelete;
+
+            $('.delete').on('click', function (e) {
+                e.preventDefault();
+                orderIdToDelete = $(this).data('order-id');
+                $('#deleteModal').modal('show');
+            });
+
+            $('#confirmDelete').on('click', function () {
+                $.ajax({
+                    url: `/Order/Delete`,
+                    type: 'POST',
+                    data: {
+                        id: orderIdToDelete
+                    },
+                    success: function (response) {
+                        Snackbar.show({
+                            text: 'Xóa đơn hàng thành công',
+                            textColor: '#ddf5f0',
+                            backgroundColor: '#00ab55',
+                            actionText: 'Bỏ qua',
+                            actionTextColor: '#3b3f5c'
+                        });
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function (xhr, status, error) {
+                        Snackbar.show({
+                            text: 'Xóa đơn hàng thất bại',
+                            textColor: '#fbeced',
+                            backgroundColor: '#e7515a',
+                            actionText: 'Bỏ qua',
+                            actionTextColor: '#3b3f5c'
+                        });
+                    }
+                });
+
+                $('#deleteModal').modal('hide');
+            });
         });
     </script>
 }
