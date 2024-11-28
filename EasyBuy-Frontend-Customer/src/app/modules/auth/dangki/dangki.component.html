@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>SignIn Cover | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+    <link href="../../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../assets/src/assets/css/light/authentication/auth-cover.css" rel="stylesheet"
+        type="text/css" />
+
+    <link href="../../../../assets/layouts/modern-light-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+</head>
+
+<body class="form">
+
+    <!-- BEGIN LOADER -->
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!--  END LOADER -->
+
+    <div class="auth-container d-flex">
+
+        <div class="container mx-auto align-self-center">
+
+            <div class="row">
+
+                <div
+                    class="col-6 d-lg-flex d-none h-100 my-auto top-0 start-0 text-center justify-content-center flex-column">
+                    <div class="auth-cover-bg-image"></div>
+                    <div class="auth-overlay"></div>
+
+                    <div class="auth-cover">
+
+                        <div class="position-relative">
+
+                            <img src="../src/assets/img/auth-cover.svg" alt="auth-img">
+
+                            <h2 class="mt-5 text-white font-weight-bolder px-2">Join the community of expert developers
+                            </h2>
+                            <p class="text-white px-2">It is easy to setup with great customer experience. Start your
+                                7-day free trial</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center ms-lg-auto me-lg-0 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                  <div class="col-md-12 mb-3">
+                                    <h2>Đăng kí</h2>
+                                    <p>Điền đầy đủ thông tin để đăng kí</p>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="mb-3">
+                                      <label class="form-label">Họ tên</label>
+                                      <input type="text" class="form-control add-billing-address-input" formControlName="name">
+                                      <div *ngIf="form.get('name')?.invalid && (form.get('name')?.touched || form.get('name')?.dirty)">
+                                        <small class="text-danger" *ngIf="form.get('name')?.errors?.['required']">Họ tên là bắt buộc.</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="mb-3">
+                                      <label class="form-label">Email</label>
+                                      <input type="email" class="form-control" formControlName="email">
+                                      <div *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty)">
+                                        <small class="text-danger" *ngIf="form.get('email')?.errors?.['required']">Email không được để trống.</small>
+                                        <small class="text-danger" *ngIf="form.get('email')?.errors?.['email']">Email không hợp lệ.</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="mb-3">
+                                      <label class="form-label">Địa chỉ</label>
+                                      <input type="text" class="form-control" formControlName="address">
+                                      <div *ngIf="form.get('address')?.invalid && (form.get('address')?.touched || form.get('address')?.dirty)">
+                                        <small class="text-danger" *ngIf="form.get('address')?.errors?.['required']">Địa chỉ là bắt buộc.</small>
+                                        <small class="text-danger" *ngIf="form.get('address')?.errors?.['minlength']">Địa chỉ phải có ít nhất 6 ký tự.</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="mb-3">
+                                      <label class="form-label">SDT</label>
+                                      <input type="text" class="form-control" formControlName="phone">
+                                      <div *ngIf="form.get('phone')?.invalid && (form.get('phone')?.touched || form.get('phone')?.dirty)">
+                                        <small class="text-danger" *ngIf="form.get('phone')?.errors?.['required']">Số điện thoại là bắt buộc.</small>
+                                        <small class="text-danger" *ngIf="form.get('phone')?.errors?.['pattern']">Số điện thoại chỉ được chứa số.</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-12">
+                                    <div class="mb-3">
+                                      <label class="form-label">Password</label>
+                                      <input type="password" class="form-control" formControlName="password">
+                                      <div *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || form.get('password')?.dirty)">
+                                        <small class="text-danger" *ngIf="form.get('password')?.errors?.['required']">Mật khẩu là bắt buộc.</small>
+                                        <small class="text-danger" *ngIf="form.get('password')?.errors?.['minlength']">Mật khẩu phải có ít nhất 6 ký tự.</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-12">
+                                    <div class="mb-3">
+                                      <label class="form-label">Nhập lại Password</label>
+                                      <input type="password" class="form-control" formControlName="confirmPassword">
+                                      <div *ngIf="form.get('confirmPassword')?.invalid && (form.get('confirmPassword')?.touched || form.get('confirmPassword')?.dirty)">
+                                        <small class="text-danger" *ngIf="form.get('confirmPassword')?.errors?.['required']">Nhập lại mật khẩu là bắt buộc.</small>
+                                        <small class="text-danger" *ngIf="form.get('confirmPassword')?.value !== form.get('password')?.value">Mật khẩu không khớp.</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                              
+                                  <div class="col-12">
+                                    <div class="mb-4">
+                                      <button class="btn btn-secondary w-100" [disabled]="form.invalid">SUBMIT</button>
+                                    </div>
+                                  </div>
+                              
+                                  <div class="col-12">
+                                    <div class="text-center">
+                                      <p class="mb-0">Đã có tài khoản? <a [routerLink]="['/dangnhap']" class="text-warning">Đăng nhập</a></p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                              
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

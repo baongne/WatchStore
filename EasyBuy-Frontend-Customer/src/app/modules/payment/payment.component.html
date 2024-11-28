@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="payment.component.css">
+
+</head>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<body >   
+    <div class="checkout-container" >
+        <div class="section-title">Thông Tin Thanh Toán</div>
+        <!-- THÔNG TIN NGƯỜI DÙNG-->
+        <div class="shipping-info section-content">
+            <div class="address-info d-flex justify-content-between align-items-center p-3 bg-light rounded shadow-sm">
+                <div>
+                    <span class="d-block font-weight-bold">{{user.name}}, {{user.phone}}</span>
+                    <span class="text-muted">{{user.address}}</span>
+                </div>
+                <a [routerLink]="['/user-profile']" class="change-link text-primary font-weight-bold">Thay đổi</a>
+            </div>
+            <h4>Phương thức vận chuyển</h4>
+            <div class="delivery-options">
+                <button class="payment-option" (click)="changeShipMethod('fast')"
+                    [class.selected]="shipMethod === 'fast'">Giao hàng nhanh <br> 20,000đ</button>
+                <button class="payment-option" (click)="changeShipMethod('standard')"
+                    [class.selected]="shipMethod === 'standard'">Giao hàng tiêu chuẩn <br> 60,000đ</button>
+            </div>
+        </div>
+        <!--PHƯƠNG THỨC THANH TOÁN-->
+        <div class="payment-methods section-content">
+            <h4>Phương thức thanh toán</h4>
+            <div class="payment-methods-grid">
+                <div class="payment-option" (click)="changePayMethod(payment.id)"
+                    [class.selected]="paymentId === payment.id" *ngFor="let payment of payments">{{payment.paymentName}}
+                </div>
+
+            </div>
+        </div>
+       
+
+        <!--BUTTON-->
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <input type="text" placeholder="Nhập mã giảm giá" [(ngModel)]="inputVoucher"
+                style="flex: 1; padding: 8px; border: 1px solid #d8c1f5; border-radius: 5px;">
+            <button class="apply-btn" (click)="setVoucher()">Áp dụng</button>
+        </div>
+        <button class="checkout-btn" (click)="onThanhToan()">Thanh Toán</button>
+    </div>
+     <!--DANH SÁCH SẢN PHẨM-->
+     <div class="order-summary section-content p-3 bg-light rounded shadow-sm">
+        <h4 class="mb-3 font-weight-bold">Danh sách sản phẩm</h4>
+        <table class="table table-borderless">
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{product.product.productName}} -{{product.product.model}} - {{product.product.color}} -
+                        {{ product.product.gender === "1" ? "Nam" : "Nữ" }}</td>
+                    <td class="text-center">x{{product.quantity}}</td>
+                    <td class="text-right">{{formatCurrencyVND(product.quantity * ((1-product.product.discount)
+                        *product.product.priceToSell))}}</td>
+                </tr>
+                <tr>
+                    <td>Phí vận chuyển</td>
+                    <td></td>
+                    <td class="text-right">{{formatCurrencyVND(shippingPrice)}}</td>
+                </tr>
+                <tr>
+                    <td>Khuyến mãi</td>
+                    <td></td>
+                    <td class="text-right text-danger">-{{formatCurrencyVND(voucherPrice)}}</td>
+                </tr>
+                <tr class="order-total font-weight-bold">
+                    <td class="text-uppercase">Tổng thanh toán</td>
+                    <td></td>
+                    <td class="text-right text-primary">{{formatCurrencyVND(total_price)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<app-footer></app-footer>
+</html>

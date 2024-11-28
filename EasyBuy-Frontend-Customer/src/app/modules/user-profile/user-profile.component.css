@@ -1,0 +1,11 @@
+/* Thu nhỏ toàn bộ form */
+form.section.general-info {
+    max-width: 80%;
+    /* Giới hạn độ rộng form */
+    margin: auto;
+    padding: 10px;
+}
+body{
+    margin-top: 150px;
+    margin-bottom: 200px;
+}

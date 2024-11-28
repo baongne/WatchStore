@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Ecommerce Product Details | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+
+    <link href="../../../assets/src/assets/css/light/components/accordions.css" rel="stylesheet" type="text/css">
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" type="text/css"
+        href="../../../assets/src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/src/plugins/src/glightbox/glightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/src/plugins/src/splide/splide.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../assets/src/assets/css/light/components/tabs.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/src/assets/css/light/apps/ecommerce-details.css">
+    <link rel="stylesheet" href="product-detail.component.css">
+
+    <!--  END CUSTOM STYLE FILE  -->
+</head>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<body class="">
+
+
+
+    <div class="main-container " id="container">
+
+
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+
+            <div class="layout-px-spacing">
+
+                <div class="middle-content container-xxl p-0">
+
+                    <!-- BREADCRUMB -->
+                    <div class="page-meta">
+                        <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">App</a></li>
+                                <li class="breadcrumb-item"><a href="#">Ecommerce</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Details</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <!-- /BREADCRUMB -->
+
+                    <div class="row layout-top-spacing">
+
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+
+                            <div class="widget-content widget-content-area br-8">
+
+                                <div class="row justify-content-center">
+                                    <div class="product-image-container">
+                                        <img [src]="'https://localhost:7238/'+product.productImg" alt="Product Image" class="product-image">
+                                    </div>
+                                
+                                    <div class="col-xxl-4 col-xl-5 col-lg-12 col-md-12 col-12 mt-xl-0 mt-5 align-self-center">
+                                        <div class="product-details-content">
+                                            <span class="badge badge-light-danger mb-3" *ngIf="product.discount > 0">{{ product.discount * 100 }}% Sale off</span>
+                                            <h3 class="product-title mb-0">{{ product.productName }}</h3>
+                                            <p class="product-model">Mẫu: {{ product.model }}</p>
+                                            <p class="product-color">Màu sắc: {{ product.color }}</p>
+                                            <p class="product-gender">Giới tính: {{ product.gender === "1" ? "Nam" : "Nữ" }}</p>
+                                            <div class="row">
+                                                <div class="col-md-9 col-sm-9 col-9">
+                                                    <div class="pricing" *ngIf="product.discount > 0; else notSale">
+                                                        <span class="discounted-price">{{ formatCurrencyVND(product.priceToSell - product.priceToSell * product.discount) }}</span>
+                                                        <span class="regular-price">{{ formatCurrencyVND(product.priceToSell) }}</span>
+                                                    </div>
+                                                    <ng-template #notSale>
+                                                        <span class="regular-price">{{ formatCurrencyVND(product.priceToSell) }}</span>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                
+                                            <hr class="mb-4">
+                                            <div class="row quantity-selector mb-4">
+                                                <div class="col-xl-6 col-lg-6 col-sm-6 mt-sm-3">Số lượng</div>
+                                                <div class="col-xl-6 col-lg-6 col-sm-6">
+                                                    <input type="number" min="1" [max]="product.stockQuantity" [(ngModel)]="quantity" class="form-control">
+                                                    <p class="text-danger product-helpers text-end mt-2" *ngIf="product.stockQuantity > 0">Còn lại: {{ product.stockQuantity }} sản phẩm</p>
+                                                    <p class="text-danger product-helpers text-end mt-2" *ngIf="product.stockQuantity === 0" >Hết hàng</p>
+                                                </div>
+                                            </div>
+                                
+                                            <hr class="mb-5 mt-4">
+                                
+                                            <div class="action-button text-center"  *ngIf="product.stockQuantity > 0">
+                                                <div class="row">
+                                                    <div class="col-xxl-7 col-xl-7 col-sm-6 mb-sm-0 mb-3">
+                                                        <button class="btn btn-primary w-100 btn-lg" (click)="onBtnAddToCart()">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                                                                <circle cx="9" cy="21" r="1"></circle>
+                                                                <circle cx="20" cy="21" r="1"></circle>
+                                                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                                            </svg> 
+                                                            <span class="btn-text-inner" >Thêm vào giỏ</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-xxl-5 col-xl-5 col-sm-6">
+                                                        <button class="btn btn-success w-100 btn-lg" (click)="onBtnBuy()">Mua ngay</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="secure-info mt-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
+                                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                                </svg>
+                                                <p>Safe and Secure Payments. Easy returns. 100% Authentic products.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+
+                            <div class="widget-content widget-content-area br-8">
+
+                                <div class="production-descriptions simple-pills">
+
+                                    <div class="pro-des-content">
+
+
+
+
+                                        <div id="iconsAccordion" class="accordion-icons accordion">
+
+
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne3" (click)="openPD()">
+                                                    <section class="mb-0 mt-0">
+                                                        <div role="menu" class="collapsed" data-bs-toggle="collapse"
+                                                            data-bs-target="#iconAccordionOne" aria-expanded="false"
+                                                            aria-controls="iconAccordionOne">
+                                                            <div class="accordion-icon"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-shopping-bag">
+                                                                    <path
+                                                                        d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z">
+                                                                    </path>
+                                                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                                                </svg></div>
+                                                            Mô tả sản phẩm <div class="icons"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-chevron-down">
+                                                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                                                </svg></div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+
+                                                <div id="iconAccordionOne" class="collapse"
+                                                    aria-labelledby="headingOne3" data-bs-parent="#iconsAccordion"
+                                                    [ngClass]="{'open':isOpenPD}">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12" [innerHTML]="product.description">
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne4" (click)="openSI()">
+                                                    <section class="mb-0 mt-0">
+                                                        <div role="menu" class="collapsed" data-bs-toggle="collapse"
+                                                            data-bs-target="#iconAccordionFour" aria-expanded="false"
+                                                            aria-controls="iconAccordionFour">
+                                                            <div class="accordion-icon"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-truck">
+                                                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8">
+                                                                    </polygon>
+                                                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                                                </svg></div>
+                                                            Thông tin vận chuyển <div class="icons"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-chevron-down">
+                                                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                                                </svg></div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+
+                                                <div id="iconAccordionFour" class="collapse"
+                                                    aria-labelledby="headingOne4" data-bs-parent="#iconsAccordion"
+                                                    [ngClass]="{'open':isOpenSI}">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                <h5><strong>Shipping methods</strong></h5>
+                                                                <hr />
+                                                                <p class="mb-2">We ship with these shipping options:</p>
+                                                                <p class="mb-5">Duis vehicula lectus condimentum,
+                                                                    tincidunt odio a, posuere magna. Aliquam vitae orci
+                                                                    a metus volutpat sagittis. Quisque volutpat, nulla
+                                                                    non efficitur aliquet, turpis felis fringilla sem,
+                                                                    quis pellentesque erat diam sit amet mi.</p>
+
+                                                                <h5><strong>DHL Express</strong></h5>
+                                                                <hr />
+                                                                <p class="mb-3"> Worldwide shipping with DHL Express and
+                                                                    you'll get a tracking number for your order. All
+                                                                    orders usually arrive within 1 business day in North
+                                                                    American countries.</p>
+                                                                <p class="mb-5">Please see estimated delivery
+                                                                    information at checkout.</p>
+
+                                                                <h5><strong>Local pickup in Washington</strong></h5>
+                                                                <hr />
+                                                                <p class="mb-3">You can pickup your order from our
+                                                                    office here in Washington. We will send you an
+                                                                    E-mail when your order is ready for pickup. Please
+                                                                    note: In the case of pickup orders, which need to be
+                                                                    sent by US Post at the request of the customer, a
+                                                                    processing fee of USD 10.00 will be charged in
+                                                                    addition to the shipping costs.</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+
+</body>
+<app-footer></app-footer>
+
+</html>

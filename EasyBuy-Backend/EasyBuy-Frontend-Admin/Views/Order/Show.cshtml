@@ -1,0 +1,351 @@
+﻿@model EasyBuy_Frontend_Admin.Models.OrderViewModel
+@using EasyBuy_Backend.Models.Enums
+@using EasyBuy_Frontend_Admin.Helpers
+
+<!-- CSS riêng cho lớp con -->
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/custom_dt_custom.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/custom_dt_custom.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/dark/apps/blog-create.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/light/apps/blog-create.css")">
+    <style>
+        #datatable thead th {
+            font-weight: bold;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        #datatable tbody td {
+            vertical-align: middle;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .widget-content-area {
+            padding: 20px !important;
+        }
+    </style>
+}
+
+
+<!-- BREADCRUMB -->
+<div class="page-meta">
+    <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Đơn hàng</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("Index", "Order")">Quản lý Đơn hàng</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Chi tiết Đơn hàng</li>
+        </ol>
+    </nav>
+</div>
+<!-- /BREADCRUMB -->
+
+<div class="d-flex justify-content-between mt-4 mb-2">
+    <div>
+        <div class="d-flex align-items-start">
+            <h5 class="text-bold">CHI TIẾT ĐƠN HÀNG</h5>
+        </div>
+        <p class="text-primary">Ngày tạo: @Model.OrderDate</p>
+    </div>
+    <div>
+        <button id="#furloughStatusModal"
+                class="btn btn-block btn-outline-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#furloughStatusModal">
+            Cập nhật trạng thái
+        </button>
+        <iframe id="pdfFrame" style="display:none;"></iframe>
+        <a href="@Url.Action("Index", "Order")" class="btn">
+            Trở lại
+        </a>
+ 
+    </div>
+</div>
+
+
+
+<div class="row mb-4 layout-spacing">
+    <div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Thông tin sản phẩm</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area blog-create-section">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-container">
+                            <table id="inventoryvoucher-table" class="table style-3 dt-table-hover" style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr>
+                                         <th>STT</th>
+                                        <th>Mã Sản phẩm</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Tổng cộng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderLines)
+                                    {
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td><span class="badge badge-light-dark">@item.Product.Code</span></td>
+                                            <td>@item.Product.ProductName</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.UnitPrice.ToString("N0") VNĐ</td>
+                                            <td>@item.TotalPrice.ToString("N0") VNĐ</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="statbox widget box box-shadow mt-4">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Thông tin thanh toán</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area blog-create-section">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-start me-1">Tổng tiền:</p>
+                            <b><p>@Model.OrderTotal.ToString("N0") VNĐ</p></b>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-start me-1">Phí vận chuyển:</p>
+                            <b><p>@Model.ShippingFee.ToString("N0") VNĐ</p></b>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-start me-1">Giá giảm:</p>
+                            <b><p>@Model.OrderDiscount.ToString("N0") VNĐ</p></b>
+                        </div>
+
+                 
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <b><p class="text-start me-1">Tổng thanh toán:</p></b>
+                            <b><p class="text-dark text-bold">@Model.OrderTotal.ToString("N0") VNĐ</p></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /DATATABLE -->
+
+    <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Thông tin người đặt: </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area blog-create-section">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="d-flex">
+                            <p class="text-start me-1">Tên :</p>
+                            <b><p class="text-dark text-bold">@Model.User.Name</p></b>
+                        </div>
+                        <div class="d-flex">
+                            <p class="text-start me-1">Email :</p>
+                            <b><p class="text-dark text-bold">@Model.User.Email</p></b>
+                        </div>
+                        <div class="d-flex">
+                            <p class="text-start me-1">Số điện thoại :</p>
+                            <b><p class="text-dark text-bold">@Model.User.PhoneNumber</p></b>
+                        </div>
+                        <div class="d-flex">
+                            <p class="text-start me-1">Địa chỉ :</p>
+                            <b><p class="text-dark text-bold">@Model.User.Address</p></b>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="statbox widget box box-shadow mt-3">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Thông tin đơn hàng: </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area blog-create-section">
+                <div class="row">
+                    <div class="col-xxl-12">
+                     
+                      
+                        <div class="d-flex">
+                            <p class="text-start me-1">Voucher áp dụng: :</p>
+                            <b><p class="text-dark text-bold">@Model.Voucher.Name</p></b>
+                        </div>
+                        <div class="d-flex">
+                            <p class="text-start me-1">Trạng thái đơn hàng:</p>
+                            <b>
+                                <span class="badge badge-light-@Model.Status.GetBadge()">
+                                    @Model.Status.GetDisplayName()
+                                </span>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="furloughStatusModal" tabindex="-1" role="dialog" aria-labelledby="furloughStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="furloughStatusModalLabel" style="color: #3b3f5c;">
+                    Cập nhật trạng thái
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form" method="post">
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                            <label for="user">Trang thái <strong class="text-danger">*</strong></label>
+                            <select asp-for="Status" id="Status"
+                                    class="form-control @(ViewData.ModelState["Status"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+                                    asp-items="Html.GetEnumSelectList<OrderStatus>()">
+                                <option value="">Chọn</option>
+
+                            </select>
+                            <span asp-validation-for="Status" class="invalid-feedback" role="alert"></span>
+                   
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Đóng</button>
+                    <button id="submit-button" type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/assets/apps/blog-create.js")"></script>
+
+    <script src="~/lib/plugins/table/datatable/datatables.js"></script>
+    <script src="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.js"></script>
+    <script src="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.js"></script>
+    <script>
+        $('#inventoryvoucher-table').DataTable({
+            "dom": "<'table-responsive'tr>" +
+                "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",  // Xóa phần 'l' (length menu) và 'f' (search)
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+                    "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+                },
+                "sEmptyTable": "Chưa có dữ liệu",
+                "sInfo": "Đang hiển thị trang _PAGE_ của  _PAGES_",
+                "sZeroRecords": "Không có bản ghi nào trùng khớp",
+                "sLengthMenu": "Kết quả :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 10,
+            "ordering": false
+        });
+    </script>
+    <script>
+        function resetForm() {
+            $('.invalid-feedback').text(''); 
+            $('.is-invalid').removeClass('is-invalid'); 
+        }
+
+        function handleErrors(errors) {
+            $.each(errors, function (key, message) {
+                let input = $(`#${key}`);
+                if (input.length) {
+                    input.addClass('is-invalid');
+                    let errorSpan = input.siblings('.invalid-feedback');
+                    if (errorSpan.length) {
+                        errorSpan.html(`<strong>${message}</strong>`);
+                    } else {
+                        let newErrorSpan = $('<span>', {
+                            class: 'invalid-feedback',
+                            role: 'alert',
+                            html: `<strong>${message}</strong>`
+                        });
+                        input.after(newErrorSpan);
+                    }
+                }
+            });
+            $('#submit-button').prop('disabled', false).text('Lưu');
+        }
+
+        function handleSuccess(message, statusBadge, statusName) {
+            Snackbar.show({
+                text: message,
+                textColor: '#ddf5f0',
+                backgroundColor: '#00ab55',
+                actionText: 'Thay đổi trạng thái thành công',
+                actionTextColor: '#3b3f5c'
+            });
+
+            $('#furloughStatusModal').modal('hide');
+            $('#submit-button').prop('disabled', false).text('Lưu');
+        }
+
+        $('#form').on('submit', function (e) {
+            $('#submit-button').prop('disabled', true).text('Đang xử lý...');
+            resetForm();  
+
+            let formData = new FormData(this);  
+
+            $.ajax({
+                url: `/Order/Edit`, 
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  
+                },
+                success: function (response) {
+                    console.log("test", 1);
+                    if (response.message) {
+                        handleSuccess(response.message, response.statusBadge, response.statusName);
+                    }
+                },
+                error: function (xhr) {
+                    const errors = xhr.responseJSON.errors;
+                    handleErrors(errors);
+                }
+            });
+        });
+    </script>
+
+}

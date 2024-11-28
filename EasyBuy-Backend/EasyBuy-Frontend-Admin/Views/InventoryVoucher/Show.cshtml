@@ -1,0 +1,204 @@
+﻿@{
+	ViewData["Title"] = "Chỉnh Sửa Phiếu Nhập";
+}
+@model EasyBuy_Frontend_Admin.Models.InventoryVoucherViewModel
+@using EasyBuy_Frontend_Admin.Models.Enums;
+
+
+<!-- CSS riêng cho lớp con -->
+@section Styles {
+	<link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/datatables.css">
+	<link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.css">
+	<link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.css">
+	<link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/dt-global_style.css">
+	<link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/dt-global_style.css">
+	<link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/custom_dt_custom.css">
+	<link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/custom_dt_custom.css">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/dark/apps/blog-create.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/light/apps/blog-create.css")">
+	<style>
+		#datatable thead th {
+			font-weight: bold;
+			background-color: #f8f9fa;
+			color: #333;
+		}
+
+		#datatable tbody td {
+			vertical-align: middle;
+		}
+
+		.table-container {
+			overflow-x: auto;
+		}
+
+		.widget-content-area {
+			padding: 20px !important;
+		}
+	</style>
+}
+
+<div>
+	<!-- BREADCRUMB -->
+	<div class="page-meta">
+		<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">Phiếu nhập</a></li>
+				<li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("Index", "InventoryVoucher")">Quản lý Phiếu nhập</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Chi tiết Phiếu nhập</li>
+			</ol>
+		</nav>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<div class="d-flex justify-content-between mt-4 mb-2">
+		<div>
+			<div class="d-flex align-items-start">
+				<h5 class="text-bold">CHI TIẾT PHIẾU NHẬP</h5>
+			</div>
+			<p class="text-primary">Ngày nhập: @Model.Date</p>
+		</div>
+		<div>
+			<iframe id="pdfFrame" style="display:none;"></iframe>
+			<a href="@Url.Action("Index", "InventoryVoucher")" class="btn">
+				Trở lại
+			</a>
+		</div>
+	</div>
+	<!-- DATATABLE -->
+
+	<div class="row mb-4 layout-spacing">
+		<div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+			<div class="statbox widget box box-shadow">
+				<div class="widget-header">
+					<div class="row">
+						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
+							<h4>Thông tin sản phẩm</h4>
+						</div>
+					</div>
+				</div>
+				<div class="widget-content widget-content-area blog-create-section">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="table-container">
+								<table id="inventoryvoucher-table" class="table style-3 dt-table-hover" style="width: 100%">
+									<thead>
+										<tr>
+											<th style="width: 5%">STT</th>
+											<th>Mã sản phẩm</th>
+											<th>Tên sản phẩm</th>
+											<th>Số lượng</th>
+											<th>Tổng cộng</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model.InventoryVoucherDetailViewModels)
+										{
+											<tr>
+												<td>@item.Id</td>
+												<td><span class="badge badge-light-dark">@item.Product.Code</span></td>
+												<td>@item.Product.ProductName</td>
+												<td>@item.Quantity</td>
+												<td>@item.ReceivingUnitPrice.ToString("N0") VNĐ</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="statbox widget box box-shadow mt-4">
+				<div class="widget-header">
+					<div class="row">
+						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
+							<h4>Thông tin thanh toán</h4>
+						</div>
+					</div>
+				</div>
+				<div class="widget-content widget-content-area blog-create-section">
+					<div class="row">
+						<div class="col-xxl-12">
+							<div class="d-flex justify-content-between">
+								<p class="text-start me-1">Tổng tiền:</p>
+								<b><p>@Model.Total.ToString("N0") VNĐ</p></b>
+							</div>
+							<hr>
+							<div class="d-flex justify-content-between">
+								<b><p class="text-start me-1">Tổng thanh toán:</p></b>
+								<b><p class="text-dark text-bold">@Model.Total.ToString("N0") VNĐ</p></b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- /DATATABLE -->
+
+		<div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
+			<div class="statbox widget box box-shadow">
+				<div class="widget-header">
+					<div class="row">
+						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
+							<h4>Thông tin nhà cung cấp: </h4>
+						</div>
+					</div>
+				</div>
+			<div class="widget-content widget-content-area blog-create-section">
+				<div class="row">
+					<div class="col-xxl-12">
+						<div class="d-flex">
+							<p class="text-start me-1">Tên :</p>
+							<b><p class="text-dark text-bold">@Model.Supplier.Name</p></b>
+						</div>
+						<div class="d-flex">
+							<p class="text-start me-1">Email :</p>
+							<b><p class="text-dark text-bold">@Model.Supplier.Email</p></b>
+						</div>
+						<div class="d-flex">
+							<p class="text-start me-1">Số điện thoại :</p>
+							<b><p class="text-dark text-bold">@Model.Supplier.NumberPhone</p></b>
+						</div>
+						<div class="d-flex">
+							<p class="text-start me-1">Địa chỉ :</p>
+								<b><p class="text-dark text-bold">@Model.Supplier.Address</p></b>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Scripts riêng cho lớp con -->
+@section Scripts {
+	<script src="@Url.Content("~/js/assets/apps/blog-create.js")"></script>
+
+	<script src="~/lib/plugins/table/datatable/datatables.js"></script>
+	<script src="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.js"></script>
+	<script src="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.js"></script>
+	<script>
+		$('#inventoryvoucher-table').DataTable({
+			"dom": "<'table-responsive'tr>" +
+				"<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",  // Xóa phần 'l' (length menu) và 'f' (search)
+			"oLanguage": {
+				"oPaginate": {
+					"sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+					"sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+				},
+				"sEmptyTable": "Chưa có dữ liệu",
+				"sInfo": "Đang hiển thị trang _PAGE_ của  _PAGES_",
+				"sZeroRecords": "Không có bản ghi nào trùng khớp",
+				"sLengthMenu": "Kết quả :  _MENU_", 
+			},
+			"stripeClasses": [],
+			"lengthMenu": [7, 10, 20, 50],
+			"pageLength": 10,
+			"ordering": false
+		});
+	</script>
+}

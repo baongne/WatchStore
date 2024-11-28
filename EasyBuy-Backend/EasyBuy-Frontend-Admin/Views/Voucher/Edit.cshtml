@@ -1,0 +1,155 @@
+﻿@{
+	ViewData["Title"] = "Chỉnh Sửa phiếu giảm giá";
+}
+@model EasyBuy_Frontend_Admin.Models.VoucherViewModel
+@using EasyBuy_Frontend_Admin.Models.Enums;
+
+
+<!-- CSS riêng cho lớp con -->
+@section Styles {
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
+}
+
+<div>
+	<!-- BREADCRUMB -->
+	<div class="page-meta">
+		<nav class="breadcrumb-style-one" aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">Phiếu giảm giá</a></li>
+				<li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("Index", "Voucher")">Quản lý phiếu giảm giá</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Chỉnh sửa phiếu giảm giá</li>
+			</ol>
+		</nav>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<div class="layout-top-spacing col-12">
+		<a href="@Url.Action("Index", "Voucher")" class="btn">
+			Trở lại
+		</a>
+
+	</div>
+
+	<div class="row layout-top-spacing">
+		<div id="user-management" class="col-lg-12 layout-spacing">
+			<div class="statbox widget box box-shadow">
+				<div class="widget-header">
+					<div class="row">
+						<div class="col-xl-12 col-md-12 col-sm-12 col-12">
+							<h4>Chỉnh sửa</h4>
+						</div>
+					</div>
+				</div>
+				<div class="widget-content widget-content-area">
+					<div class="col-12">
+						<form asp-action="Edit" id="general-settings" method="POST">
+							<div class="form-group mb-4">
+								<label for="user">Tên<strong class="text-danger">*</strong></label>
+								<input asp-for="Name"
+									   type="text"
+									   id="name"
+									   class="form-control @(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "is-invalid" : "")"
+									   placeholder="Tên">
+								<span asp-validation-for="Name" class="invalid-feedback" role="alert"></span>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="dateFrom">Ngày bắt đầu<strong class="text-danger">*</strong></label>
+										<input asp-for="DateFrom"
+											   type="date"
+											   id="dateFrom"
+											   class="form-control @(ViewData.ModelState["DateFrom"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Chọn ngày bắt đầu">
+										<span asp-validation-for="DateFrom" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="dateTo">Ngày kết thúc<strong class="text-danger">*</strong></label>
+										<input asp-for="DateTo"
+											   type="date"
+											   id="dateTo"
+											   class="form-control @(ViewData.ModelState["DateTo"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Chọn ngày kết thúc">
+										<span asp-validation-for="DateTo" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="user">Giá trị<strong class="text-danger">*</strong></label>
+										<input asp-for="Discount"
+											   type="text"
+											   id="discount"
+											   class="form-control @(ViewData.ModelState["Discount"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Giá trị">
+										<span asp-validation-for="Discount" class="invalid-feedback" role="alert"></span>
+
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="user">Đơn vị<strong class="text-danger">*</strong></label>
+										<input asp-for="Unit"
+											   type="text"
+											   id="unit"
+											   class="form-control @(ViewData.ModelState["Unit"]?.Errors.Count > 0 ? "is-invalid" : "")"
+											   placeholder="Đơn vị">
+										<span asp-validation-for="Unit" class="invalid-feedback" role="alert"></span>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group mb-4">
+										<label for="user">Trạng thái <strong class="text-danger">*</strong></label>
+										<select asp-for="Status" id="Status"
+												class="form-control @(ViewData.ModelState["Status"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+												asp-items="Html.GetEnumSelectList<VoucherStatus>()">
+											<option value="">Chọn</option>
+
+										</select>
+										<span asp-validation-for="Status" class="invalid-feedback" role="alert"></span>
+									</div>
+								</div>
+
+							</div>
+
+							<button type="submit" class="btn btn-primary">Hoàn tất</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<!-- Scripts riêng cho lớp con -->
+@section Scripts {
+	<script src="@Url.Content("~/lib/plugins/flatpickr/flatpickr.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/flatpickr/custom-flatpickr.js")"></script>
+	<script>
+		flatpickr("#dateFrom", {
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",
+			minDate: "today",
+		});
+
+		flatpickr("#dateTo", {
+			enableTime: true,
+			dateFormat: "Y-m-d H:i",
+			minDate: "today",
+		});
+	</script>
+}

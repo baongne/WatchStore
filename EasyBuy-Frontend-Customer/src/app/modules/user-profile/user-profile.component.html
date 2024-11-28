@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+  <title>Account Settings | CORK - Multipurpose Bootstrap Dashboard Template </title>
+  <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+
+  <!-- BEGIN GLOBAL MANDATORY STYLES -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link href="../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+  <!-- END GLOBAL MANDATORY STYLES -->
+
+  <!--  BEGIN CUSTOM STYLE FILE  -->
+  <link rel="stylesheet" href="../../../assets/src/plugins/src/filepond/filepond.min.css">
+  <link rel="stylesheet" href="../../../assets/src/plugins/src/filepond/FilePondPluginImagePreview.min.css">
+  <link href="../../../assets/src/plugins/src/notification/snackbar/snackbar.min.css" rel="stylesheet"
+    type="text/css" />
+  <link rel="stylesheet" href="../../../assets/src/plugins/src/sweetalerts2/sweetalerts2.css">
+
+  <link href="../../../assets/src/plugins/css/light/filepond/custom-filepond.css" rel="stylesheet" type="text/css" />
+  <link href="../../../assets/src/assets/css/light/components/tabs.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="../../../assets/src/assets/css/light/elements/alert.css">
+
+  <link href="../../../assets/src/plugins/css/light/sweetalerts2/custom-sweetalert.css" rel="stylesheet"
+    type="text/css" />
+  <link href="../../../assets/src/plugins/css/light/notification/snackbar/custom-snackbar.css" rel="stylesheet"
+    type="text/css" />
+  <link rel="stylesheet" type="text/css" href="../../../assets/src/assets/css/light/forms/switches.css">
+  <link href="../../../assets/src/assets/css/light/components/list-group.css" rel="stylesheet" type="text/css">
+
+  <link href="../../../assets/src/assets/css/light/users/account-setting.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="user-profile.component.css">
+  <!--  END CUSTOM STYLE FILE  -->
+</head>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<body >
+
+  <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
+    <form class="section general-info" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="info">
+        <h6 class="">Thông tin người dùng</h6>
+        <div class="row">
+          <div class="col-lg-11 mx-auto">
+            <div class="row">
+              <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
+                <div class="form">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="fullName">Họ tên</label>
+                        <input type="text" class="form-control mb-3" id="fullName" formControlName="name"
+                          placeholder="Họ tên" />
+                        <div
+                          *ngIf="form.get('name')?.invalid && (form.get('name')?.touched || form.get('name')?.dirty)">
+                          <small class="text-danger" *ngIf="form.get('name')?.errors?.['required']">Họ tên là bắt
+                            buộc.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control mb-3" id="email" formControlName="email"
+                          placeholder="Email" />
+                        <div
+                          *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty)">
+                          <small class="text-danger" *ngIf="form.get('email')?.errors?.['required']">Email không được để
+                            trống.</small>
+                          <small class="text-danger" *ngIf="form.get('email')?.errors?.['email']">Email không hợp
+                            lệ.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" class="form-control mb-3" id="address" formControlName="address"
+                          placeholder="Địa chỉ" />
+                        <div
+                          *ngIf="form.get('address')?.invalid && (form.get('address')?.touched || form.get('address')?.dirty)">
+                          <small class="text-danger" *ngIf="form.get('address')?.errors?.['required']">Địa chỉ là bắt
+                            buộc.</small>
+                          <small class="text-danger" *ngIf="form.get('address')?.errors?.['minlength']">Địa chỉ phải có
+                            ít nhất 6 ký tự.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="phone">SDT</label>
+                        <input type="text" class="form-control mb-3" id="phone" formControlName="phone"
+                          placeholder="SDT" />
+                        <div
+                          *ngIf="form.get('phone')?.invalid && (form.get('phone')?.touched || form.get('phone')?.dirty)">
+                          <small class="text-danger" *ngIf="form.get('phone')?.errors?.['required']">Số điện thoại là
+                            bắt buộc.</small>
+                          <small class="text-danger" *ngIf="form.get('phone')?.errors?.['pattern']">Số điện thoại chỉ
+                            được chứa số.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" class="form-control mb-3" id="password" formControlName="password"
+                          placeholder="Mật khẩu" />
+                        <div
+                          *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || form.get('password')?.dirty)">
+                          <small class="text-danger" *ngIf="form.get('password')?.errors?.['required']">Mật khẩu là bắt
+                            buộc.</small>
+                          <small class="text-danger" *ngIf="form.get('password')?.errors?.['minlength']">Mật khẩu phải
+                            có ít nhất 6 ký tự.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 mt-1">
+                      <div class="form-group text-end">
+                        <button class="btn btn-secondary" [disabled]="form.invalid">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+
+</body>
+<app-footer></app-footer>
+
+</html>

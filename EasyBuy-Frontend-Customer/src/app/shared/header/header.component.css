@@ -1,0 +1,15 @@
+.dropdown-item d-flex {
+  cursor: pointer;
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}

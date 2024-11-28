@@ -1,0 +1,77 @@
+.overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    position: relative;
+    background: white;
+    padding: 30px; /* Increase padding for more space */
+    width: 80%; /* Set a percentage or fixed width for a bigger content area */
+    max-width: 900px; /* Optional: limit the max size */
+    height: auto; /* Let the content size adjust based on the table height */
+    max-height: 80%; /* Optional: limit the max height */
+    overflow-y: auto; /* Allow scrolling if content exceeds max height */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+.close-btn {
+    color: rgb(7, 7, 7); /* Màu chữ đen */
+    border: none;
+    padding: 10px;
+    font-size: 24px; /* Tăng kích thước chữ để dễ nhìn */
+    cursor: pointer;
+    position: absolute;
+    top: 10px; /* Vị trí cách từ trên */
+    right: 10px; /* Vị trí cách từ phải */
+    background: transparent; /* Không có nền */
+    font-weight: bold; /* Làm đậm chữ */
+    border-radius: 50%; /* Đảm bảo nút có hình tròn */
+}
+.paginations {
+    display: flex;
+    justify-content: center;
+    /* Căn giữa */
+    margin: 20px 0;
+    /* Khoảng cách margin phía trên và dưới */
+  }
+  
+  .btn-group {
+    display: flex;
+  }
+  
+  #radioBtn .btn {
+    padding: 10px 20px;
+    /* Tăng kích thước nút */
+    font-size: 18px;
+    /* Tăng kích thước chữ */
+    margin: 0 5px;
+    /* Thêm khoảng cách giữa các nút */
+  }
+  
+  #radioBtn .notActive {
+    background-color: #ccc;
+    /* Màu nền cho nút không kích hoạt */
+    border-color: #bbb;
+    /* Viền cho nút không kích hoạt */
+  }
+  
+  #radioBtn .Active {
+    background-color: #007bff;
+    /* Màu nền cho nút kích hoạt */
+    border-color: #007bff;
+    /* Viền cho nút kích hoạt */
+    color: #fff;
+    /* Màu chữ cho nút kích hoạt */
+  }
+  .main-container {
+    margin-left: -250px;
+  }
