@@ -63,12 +63,11 @@
 
                                                                     <div class="col-sm-6 col-12 mr-auto">
                                                                         <div class="d-flex">
-                                                                            <img class="company-logo" src="../src/assets/img/cork-logo.png" alt="company">
-                                                                            <h3 class="in-heading align-self-center">EasyBuy Inc.</h3>
+                                                                            <h3 class="in-heading align-self-center">Hóa đơn mua hàng</h3>
                                                                         </div>
-                                                                        <p class="inv-street-addr mt-3">273 An Dương Vương phường 3 Quận 5</p>
-                                                                        <p class="inv-email-address">easybuyemail.com</p>
-                                                                        <p class="inv-email-address">123 456 789</p>
+                                                                        <p class="inv-street-addr mt-3">Địa chỉ cửa hàng: 273 An Dương Vương phường 3 Quận 5</p>
+                                                                        <br>                                                                        
+                                                                        <p class="inv-email-address"></p>
                                                                     </div>
                                                                     
                                                                     <div class="col-sm-6 text-sm-end">
@@ -92,14 +91,14 @@
                                                                     </div>
                                                                     
                                                                     <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                                        <p class="inv-customer-name">{{user.name}}</p>
-                                                                        <p class="inv-street-addr">{{user.address}}</p>
-                                                                        <p class="inv-email-address">{{user.email}}</p>
-                                                                        <p class="inv-email-address">{{user.phone}}</p>
+                                                                        <p class="inv-customer-name"> Tên người mua: {{user.name}}</p>
+                                                                        <p class="inv-street-addr">Địa chỉ: {{user.address}}</p>
+                                                                        <p class="inv-email-address">Email: {{user.email}}</p>
+                                                                        <p class="inv-email-address">Số điện thoại: {{user.phone}}</p>
                                                                     </div>
                                                                     
                                                                     <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1 text-sm-end">
-                                                                        <p class="inv-customer-name">Minh Phúc</p>
+                                                                        <p class="inv-customer-name">Easy Buy</p>
                                                                         <p class="inv-street-addr">273 An Dương Vương </p>
                                                                         <p class="inv-email-address">infomail.com</p>
                                                                         <p class="inv-email-address">(123) 456 789</p>
@@ -108,7 +107,7 @@
                                                                 </div>
                                                                 
                                                             </div>
-    
+                                                            <hr>
                                                             <div class="inv--product-table-section">
                                                                 <div class="table-responsive">
                                                                     <table class="table">
@@ -144,26 +143,26 @@
                                                                         <div class="text-sm-end">
                                                                             <div class="row">
                                                                                 <div class="col-sm-8 col-7">
-                                                                                    <p class="">Sub Total :</p>
+                                                                                    <p class="">Tổng giá :</p>
                                                                                 </div>
                                                                                 <div class="col-sm-4 col-5">
                                                                                     <p class="">{{formatCurrencyVND(subTotal)}}</p>
                                                                                 </div>
                                                                                 <div class="col-sm-8 col-7">
-                                                                                    <p class="">Discount :</p>
+                                                                                    <p class="">Giá giảm :</p>
                                                                                 </div>
                                                                                 <div class="col-sm-4 col-5">
                                                                                     <p class="">{{formatCurrencyVND(order.orderDiscount)}}</p>
                                                                                 </div>
                                                                                 <div class="col-sm-8 col-7">
-                                                                                    <p class=" discount-rate">Shipping :</p>
+                                                                                    <p class=" discount-rate">Tiền vận chuyển :</p>
                                                                                 </div>
                                                                                 <div class="col-sm-4 col-5">
                                                                                     <p class="">{{formatCurrencyVND(order.shippingFee)}}</p>
                                                                                 </div>
-                                                                               
+                                                                               <hr>
                                                                                 <div class="col-sm-8 col-7 grand-total-title mt-3">
-                                                                                    <h4 class="">Grand Total : </h4>
+                                                                                    <h4 class="">Tổng thanh toán : </h4>
                                                                                 </div>
                                                                                 <div class="col-sm-4 col-5 grand-total-amount mt-3">
                                                                                     <h4 class="">{{formatCurrencyVND(order.orderTotal)}}</h4>
@@ -178,7 +177,7 @@
                                                             <div class="inv--note">
     
                                                                 <div class="row mt-4">
-                                                                    <div class="col-sm-12 col-12 order-sm-0 order-1">
+                                                                    <div class="col-sm-12 col-12 order-sm-0 order-1 text-center">
                                                                         <p>Cảm ơn vì đã mua hàng tại website của chúng tôi.</p>
                                                                     </div>
                                                                 </div>
