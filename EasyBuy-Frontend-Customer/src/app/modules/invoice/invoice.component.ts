@@ -34,6 +34,7 @@ export class InvoiceComponent implements OnInit {
   userId!: number;
   orderId: number = -1;
   order: Order = {
+    code: 'DH-00',
     address: '',
     orderDate: new Date,
     orderDiscount: -1,
