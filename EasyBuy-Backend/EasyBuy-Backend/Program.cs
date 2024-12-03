@@ -7,24 +7,25 @@ using EasyBuy_Backend.Services;
 using EasyBuy_Backend.Services.AuthSvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using EasyBuy_Backend.Services.Vnpay;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-// **Bước 1: Thêm dịch vụ CORS**
+//Connect VnPay API
+
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("AllowAllOrigins", builder =>
 	{
 		builder
-			.AllowAnyOrigin() // Cho phép tất cả các nguồn
-			.AllowAnyMethod() // Cho phép tất cả các phương thức
-			.AllowAnyHeader(); // Cho phép tất cả các header
+			.AllowAnyOrigin() 
+			.AllowAnyMethod()
+			.AllowAnyHeader();
 	});
 });
 
-// Add services to the container.
 builder.Services.AddServices();
 
 builder.Services.AddControllers();
@@ -32,15 +33,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Đăng ký MyDbContext với Dependency Injection và cấu hình kết nối đến cơ sở dữ liệu SQL Server
 builder.Services.AddDbContext<MyDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddRepositories();
 
-builder.Services.AddScoped<IAuthService, AuthService>();
-
-// Thêm các dịch vụ như Authentication và JWT Bearer
 builder.Services.AddAuthentication(options =>
 {
 	options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,10 +58,12 @@ builder.Services.AddAuthentication(options =>
 	};
 });
 
-builder.Services.AddAuthorization(options => {
-	options.AddPolicy("Admin", policy => policy.RequireClaim("role", "admin"));
-	options.AddPolicy("Customer", policy => policy.RequireClaim("role", "customer"));
-});
+//builder.Services.AddAuthorization(options => {
+//	options.AddPolicy("Admin", policy => policy.RequireClaim("role", "admin"));
+//	options.AddPolicy("Customer", policy => policy.RequireClaim("role", "customer"));
+//});
+
+builder.Services.AddScoped<IVnPayService, VnPayService>();
 
 var app = builder.Build();
 
@@ -74,9 +73,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-// **Bước 2: Áp dụng chính sách CORS**
 app.UseHttpsRedirection();
-// Thêm dòng này để áp dụng chính sách CORS
 app.UseCors("AllowAllOrigins");
 app.UseAuthentication();
 app.UseAuthorization();

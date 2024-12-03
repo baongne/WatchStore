@@ -3,6 +3,7 @@ using EasyBuy_Backend.Repositories.InventoryVoucherRepo;
 using EasyBuy_Backend.Repositories.SupplierRepo;
 using EasyBuy_Backend.Repositories.VoucherRepo;
 using EasyBuy_Backend.Services.AuthSvc;
+using EasyBuy_Backend.Services.Vnpay;
 
 namespace EasyBuy_Backend.Services
 {
@@ -12,7 +13,7 @@ namespace EasyBuy_Backend.Services
         {
             // Register services here
             services.AddHttpClient<IAuthService, AuthService>();
-			services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<IInventoryVoucherRepository, InventoryVoucherRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
 			return services;
