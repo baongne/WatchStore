@@ -1,8 +1,10 @@
 ﻿using EasyBuy_Backend.Dtos.Order;
 using EasyBuy_Backend.Models;
 using EasyBuy_Backend.Repositories.OrderRepo;
+using EasyBuy_Backend.Services.Vnpay;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace EasyBuy_Backend.Controllers
 {
@@ -13,9 +15,15 @@ namespace EasyBuy_Backend.Controllers
     {
         private readonly IOrderRepository _orderRepository;
 
-        public OrderController(IOrderRepository orderRepositor)
-        {
+        private readonly IVnPayService _vnPayService;
+
+
+        public OrderController(
+            IOrderRepository orderRepositor,
+            IVnPayService vnPayService
+        ) {
             _orderRepository = orderRepositor;
+            _vnPayService = vnPayService;
         }
 
         [HttpGet]
@@ -101,5 +109,27 @@ namespace EasyBuy_Backend.Controllers
 			}
 		}
 
-	}
+        [HttpGet("callback/vnpay")]
+        public IActionResult PaymentCallbackVnpay()
+        {
+            var response = _vnPayService.PaymentExecute(Request.Query);
+
+            if (response.Success && int.TryParse(response.OrderId, out var orderId))
+            {
+                var order = _orderRepository.GetById(orderId);
+                if (order != null)
+                {
+                    order.Status = Models.Enums.OrderStatus.SUCCESS; 
+                    _orderRepository.Update(order);
+                }
+                else
+                {
+                    return NotFound(new { message = "Order not found." });
+                }
+            }
+
+            return Ok(response);
+        }
+
+    }
 }

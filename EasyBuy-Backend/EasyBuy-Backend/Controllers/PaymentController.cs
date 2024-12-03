@@ -1,5 +1,7 @@
 ﻿using EasyBuy_Backend.Models;
+using EasyBuy_Backend.Models.Vnpay;
 using EasyBuy_Backend.Repositories.PaymentRepo;
+using EasyBuy_Backend.Services.Vnpay;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyBuy_Backend.Controllers
@@ -11,10 +13,16 @@ namespace EasyBuy_Backend.Controllers
 	{
 		private readonly IPaymentRepository _paymentRepository;
 
-		public PaymentController(IPaymentRepository paymentRepository)
-		{
+        private readonly IVnPayService _vnPayService;
+
+        public PaymentController(
+			IPaymentRepository paymentRepository,
+            IVnPayService vnPayService
+
+        ) {
 			_paymentRepository = paymentRepository;
-		}
+            _vnPayService = vnPayService;
+        }
 
 		[HttpGet]
 		public IActionResult GetAll()
@@ -63,5 +71,14 @@ namespace EasyBuy_Backend.Controllers
 			}
 			return BadRequest();
 		}
-	}
+
+        [HttpPost("create-url")]
+        public IActionResult CreatePaymentUrlVnpay(PaymentInformationModel model)
+        {
+            var url = _vnPayService.CreatePaymentUrl(model, HttpContext);
+
+            return Redirect(url);
+        }
+
+    }
 }
