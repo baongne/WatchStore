@@ -99,8 +99,8 @@ namespace EasyBuy_Backend.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-					code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-					product_name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    product_name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     price_to_sell = table.Column<double>(type: "float", nullable: false),
                     import_price = table.Column<double>(type: "float", nullable: false),
                     discount = table.Column<double>(type: "float", nullable: true),
@@ -132,7 +132,7 @@ namespace EasyBuy_Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     total = table.Column<double>(type: "float", nullable: false),
-                    SupplierId = table.Column<int>(type: "int", nullable: true)
+                    SupplierId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,7 +141,8 @@ namespace EasyBuy_Backend.Migrations
                         name: "FK_inventory_vouchers_suppliers_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "suppliers",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -151,6 +152,7 @@ namespace EasyBuy_Backend.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     order_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     shipping_fee = table.Column<int>(type: "int", nullable: false),
                     order_discount = table.Column<int>(type: "int", nullable: false),
                     order_total = table.Column<double>(type: "float", nullable: false),
@@ -187,8 +189,8 @@ namespace EasyBuy_Backend.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -197,12 +199,14 @@ namespace EasyBuy_Backend.Migrations
                         name: "FK_carts_products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "products",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_carts_users_UserId",
                         column: x => x.UserId,
                         principalTable: "users",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

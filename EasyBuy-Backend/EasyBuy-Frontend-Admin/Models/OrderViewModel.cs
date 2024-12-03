@@ -15,6 +15,9 @@ namespace EasyBuy_Frontend_Admin.Models
         [JsonPropertyName("orderDate")]
         public DateTime OrderDate { get; set; }
 
+        [JsonPropertyName("code")]
+        public string Code { get; set; } = "DH-00";
+
         [Required(ErrorMessage = "Phí vận chuyển là bắt buộc.")]
         [JsonPropertyName("shippingFee")]
         public int ShippingFee { get; set; }

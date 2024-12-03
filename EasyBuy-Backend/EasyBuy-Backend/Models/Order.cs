@@ -15,6 +15,9 @@ namespace EasyBuy_Backend.Models
         public DateTime OrderDate { get; set; }
 
         [Required]
+        public string Code { get; set; }
+
+        [Required]
         public int ShippingFee { get; set; } 
 
         [Required]

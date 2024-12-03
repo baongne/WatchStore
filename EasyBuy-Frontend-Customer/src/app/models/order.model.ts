@@ -5,6 +5,7 @@ import { Voucher } from "./voucher.model"
 export interface Order {
     id?: number,
     orderDate:Date,
+    code: string,
     shippingFee:number,
     orderDiscount:number,
     orderTotal:number,

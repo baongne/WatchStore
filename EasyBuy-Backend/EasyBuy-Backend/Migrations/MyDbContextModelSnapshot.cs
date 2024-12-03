@@ -31,13 +31,13 @@ namespace EasyBuy_Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -92,6 +92,7 @@ namespace EasyBuy_Backend.Migrations
                         .HasColumnName("date");
 
                     b.Property<int?>("SupplierId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<double>("Total")
@@ -151,6 +152,10 @@ namespace EasyBuy_Backend.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)")
                         .HasColumnName("address");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2")
@@ -261,6 +266,11 @@ namespace EasyBuy_Backend.Migrations
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("code");
 
                     b.Property<string>("Color")
                         .IsRequired()
@@ -467,24 +477,26 @@ namespace EasyBuy_Backend.Migrations
 
             modelBuilder.Entity("EasyBuy_Backend.Models.Cart", b =>
                 {
-                    b.HasOne("EasyBuy_Backend.Models.Product", "Product")
+                    b.HasOne("EasyBuy_Backend.Models.Product", null)
                         .WithMany("Carts")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("EasyBuy_Backend.Models.User", "User")
+                    b.HasOne("EasyBuy_Backend.Models.User", null)
                         .WithMany("Carts")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EasyBuy_Backend.Models.InventoryVoucher", b =>
                 {
                     b.HasOne("EasyBuy_Backend.Models.Supplier", "Supplier")
                         .WithMany("InventoryVouchers")
-                        .HasForeignKey("SupplierId");
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Supplier");
                 });
@@ -492,7 +504,7 @@ namespace EasyBuy_Backend.Migrations
             modelBuilder.Entity("EasyBuy_Backend.Models.InventoryVoucherDetail", b =>
                 {
                     b.HasOne("EasyBuy_Backend.Models.InventoryVoucher", "InventoryVoucher")
-                        .WithMany()
+                        .WithMany("InventoryVoucherDetails")
                         .HasForeignKey("InventoryVoucherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -560,6 +572,11 @@ namespace EasyBuy_Backend.Migrations
             modelBuilder.Entity("EasyBuy_Backend.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("EasyBuy_Backend.Models.InventoryVoucher", b =>
+                {
+                    b.Navigation("InventoryVoucherDetails");
                 });
 
             modelBuilder.Entity("EasyBuy_Backend.Models.Order", b =>

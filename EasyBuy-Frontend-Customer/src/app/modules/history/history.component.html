@@ -66,11 +66,11 @@
                     <div class="container mt-3">
                         <div class="row">
                           <div class="col-md-6">
-                            <label for="dateFrom" class="form-label">Start Date</label>
+                            <label for="dateFrom" class="form-label">Ngày bắt đầu</label>
                             <input type="date" id="dateFrom" class="form-control" [(ngModel)]="filterObj.dateFrom" (change)="executeFilter()" [max]="maxDate">
                           </div>
                           <div class="col-md-6">
-                            <label for="dateNow" class="form-label">End Date</label>
+                            <label for="dateNow" class="form-label">Ngày kết thúc</label>
                             <input type="date" id="dateNow" class="form-control" [(ngModel)]="filterObj.dateNow" (change)="executeFilter()" [max]="maxDate">
                           </div>
                         </div>
@@ -83,6 +83,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Mã đơn hàng</th>
                                         <th>Ngày đặt</th>
                                         <th>Tiền ship</th>
                                         <th>Giảm giá</th>
@@ -95,6 +96,7 @@
                                 <tbody>
                                     <tr *ngFor="let order of ordersShow">
                                         <td>{{ order.id }}</td>
+                                        <td><span class="badge badge-dark">{{ order.code }}</span></td>
                                         <td>{{ convertDateToDMY(order.orderDate) }}</td>  
                                         <td>{{ formatCurrencyVND(order.shippingFee) }}</td>
                                         <td>{{ formatCurrencyVND(order.orderDiscount)}}</td>
@@ -157,7 +159,7 @@
 
                     </div>
                     <ng-template #nothing>
-                        <h4 style="margin-top: 100px; margin-left: 300px;">Chưa có đơn hàng nào được đặt</h4>
+                        <h4 style="margin-top: 100px; margin-left: 500px;">Chưa có đơn hàng nào được đặt</h4>
                     </ng-template>
                 </div>
 

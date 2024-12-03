@@ -232,6 +232,7 @@ export class PaymentComponent implements OnInit {
     let order_total = this.total_price;
     let address = this.user.address;
     let status = 2;
+    let code = "DH-00";
     let userid = this.userId;
     let paymentId = this.paymentId;
     let orderData: Order = {
@@ -239,6 +240,7 @@ export class PaymentComponent implements OnInit {
       shippingFee: shipping_fee,
       orderDiscount: order_discount,
       orderTotal: order_total,
+      code:code,
       address: address,
       status: status,
       userId: userid,

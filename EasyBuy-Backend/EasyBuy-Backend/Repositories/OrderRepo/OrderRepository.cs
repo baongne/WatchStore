@@ -55,8 +55,15 @@ namespace EasyBuy_Backend.Repositories.OrderRepo
         }
 		public async Task<Order> CreateOrderAsync(Order order)
 		{
-			await _context.Orders.AddAsync(order);
-			await _context.SaveChangesAsync();
+			_context.Orders.Add(order);
+
+            await _context.SaveChangesAsync();
+
+            String code = "BK-00" + order.Id;
+            order.Code = code;
+            _context.Orders.Update(order);
+
+            await _context.SaveChangesAsync();
 
 			return order;
 		}

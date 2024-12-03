@@ -85,6 +85,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%">STT</th>
+                                <th>Mã đơn hàng</th>
                                 <th>Tên người dùng</th>
                                 <th>Ngày đặt hàng</th>
                                 <th>Giá giảm</th>
@@ -98,7 +99,7 @@
                             {
                                 <tr>
                                     <td>@order.Id</td>
-
+                                    <td> <span class="badge badge-dark">@order.Code</span></td>
                                     <td>
                                         <p class="text-start me-1">
                                             Tên:
