@@ -1,527 +1,1087 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Post Content | CORK - Multipurpose Bootstrap Dashboard Template </title>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+    />
+    <title>
+      Post Content | CORK - Multipurpose Bootstrap Dashboard Template
+    </title>
     <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
     <!--
     <link href="../../../assets/layouts/modern-light-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
     <link href="../../../assets/layouts/modern-light-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
     -->
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="../../../assets/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="../../../assets/layouts/modern-light-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="../../../assets/src/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="../../../assets/layouts/modern-light-menu/css/light/plugins.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="../../../assets/layouts/modern-light-menu/css/dark/plugins.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link href="../../../assets/src/assets/css/light/elements/custom-pagination.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../assets/src/assets/css/light/apps/blog-post.css">
+    <link
+      href="../../../assets/src/assets/css/light/elements/custom-pagination.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../assets/src/assets/css/light/apps/blog-post.css"
+    />
 
-    <link href="../../../assets/src/assets/css/dark/elements/custom-pagination.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../assets/src/assets/css/dark/apps/blog-post.css">
-    <link rel="stylesheet" href="home.component.css">
-</head>
-<app-header></app-header>
-<app-sidebar></app-sidebar>
-<body class="layout-boxed">
-    <div class="main-container " id="container">
+    <link
+      href="../../../assets/src/assets/css/dark/elements/custom-pagination.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../assets/src/assets/css/dark/apps/blog-post.css"
+    />
+    <link rel="stylesheet" href="home.component.css" />
+  </head>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <body class="layout-boxed">
+    <div class="main-container" id="container">
+      <div class="overlay"></div>
+      <div class="search-overlay"></div>
 
-        <div class="overlay"></div>
-        <div class="search-overlay"></div>
+      <!--  BEGIN SIDEBAR  -->
 
-        <!--  BEGIN SIDEBAR  -->
+      <!--  END SIDEBAR  -->
 
-        <!--  END SIDEBAR  -->
+      <!--  BEGIN CONTENT AREA  -->
+      <div id="content" class="main-content">
+        <div class="layout-px-spacing">
+          <div class="middle-content container-xxl p-0">
+            <div class="row layout-top-spacing">
+              <div
+                class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4"
+              >
+                <div class="single-post-content">
+                  <div
+                    id="main"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      background-color: #fff;
+                      height: fit-content;
+                      position: relative;
+                      top: 50px;
+                    "
+                  >
+                    <style>
+                      #vtdd-logotext {
+                        display: block;
+                        width: auto;
+                        height: 75px;
+                      }
 
-        <!--  BEGIN CONTENT AREA  -->
-        <div id="content" class="main-content" >
+                      #my-footer {
+                        position: relative;
+                        top: 50px;
+                      }
+                      * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                      }
+                      html:focus-within {
+                        scroll-behavior: smooth;
+                      }
+                      .bigtitlehome {
+                        font-family: "Roboto";
+                        font-style: normal;
+                        font-size: 28px;
+                        line-height: 20px;
+                        /* identical to box height, or 100% */
+                        letter-spacing: 0.3px;
+                      }
 
-            <div class="layout-px-spacing">
+                      .mediumtitlehome {
+                        font-family: "Roboto";
+                        font-style: normal;
+                        font-size: 22px;
+                        line-height: 20px;
+                        /* identical to box height, or 100% */
+                        letter-spacing: 0.3px;
+                      }
 
-                <div class="middle-content container-xxl p-0">
+                      .smalltitlehome {
+                        font-family: "Roboto";
+                        font-style: normal;
+                        font-size: 16px;
+                        line-height: 20px;
+                        /* identical to box height, or 100% */
+                        letter-spacing: 0.3px;
+                      }
 
-                    <!-- BREADCRUMB -->
-                    <div class="page-meta">
-                        <nav class="breadcrumb-style-one" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">App</a></li>
-                                <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Post</li>
-                            </ol>
-                        </nav>
+                      .minititlehome {
+                        font-family: "Roboto";
+                        font-style: normal;
+                        font-size: 14px;
+                        line-height: 20px;
+                        /* identical to box height, or 100% */
+                        letter-spacing: 0.3px;
+                      }
+                      /*phần slider*/
+                      .slider .slide-img {
+                        width: 100%;
+                        height: auto;
+                        display: block; /*bỏ cái khoảng cách trắng dưới ảnh*/
+                        object-fit: cover;
+                        padding-top: 0px;
+                      }
+
+                      .slider {
+                        overflow: hidden;
+                        width: 100%;
+                        height: 430px;
+                        position: relative;
+                        top: -24px;
+                      }
+
+                      .slider .slide-wrapper {
+                        width: 300%;
+                        animation: slideshow 10s infinite;
+                        display: flex;
+                      }
+
+                      .slider .slide {
+                        float: left;
+                        width: 100%;
+                        height: 0;
+                        display: block;
+                        justify-content: center;
+                        align-content: center;
+                      }
+
+                      @keyframes slideshow {
+                        0% {
+                          margin-left: 0;
+                        }
+
+                        12% {
+                          margin-left: 0;
+                        }
+
+                        24% {
+                          margin-left: -100%;
+                        }
+
+                        36% {
+                          margin-left: -100%;
+                        }
+
+                        48% {
+                          margin-left: -200%;
+                        }
+
+                        60% {
+                          margin-left: -200%;
+                        }
+
+                        72% {
+                          margin-left: -100%;
+                        }
+
+                        84% {
+                          margin-left: -100%;
+                        }
+
+                        96% {
+                          margin-left: 0;
+                        }
+                      }
+
+                      #productKD {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        align-items: stretch;
+                        align-content: stretch;
+                        margin-left: 20px;
+                        margin-right: 20px;
+                      }
+
+                      #productBC {
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        align-items: stretch;
+                        align-content: space-around;
+                        margin-left: 120px;
+                        margin-right: 120px;
+                        margin-top: 40px;
+                      }
+                      #productBC .clockBrandContent {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        align-items: stretch;
+                        align-content: space-around;
+                      }
+                      #pdSPBC5,
+                      #pdSPBC6,
+                      #pdSPBC7,
+                      #pdSPBC8 {
+                        margin-top: 38px;
+                      }
+
+                      .col30 {
+                        width: 30%;
+                      }
+                      .col70 {
+                        width: 70%;
+                      }
+
+                      /*Start hover*/
+                      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+                      .btn-11:before,
+                      .btn-11:after {
+                        z-index: -1;
+                      }
+                      #theAtrongHoverMauTim,
+                      #theAtrongHoverMauTim2,
+                      #theAtrongHoverMauTim3,
+                      #theAtrongHoverMauTim4,
+                      #theAtrongHoverMauTim5 {
+                        text-decoration: none;
+                        line-height: 28px;
+                        color: #fff;
+                        text-align: center;
+                      }
+
+                      /*cái ở dưới là để select tới element có clas="btn-..."*/
+                      [class^="btn-"] {
+                        position: relative;
+                        display: block;
+                        overflow: hidden;
+                        width: 100%;
+                        height: 28px;
+                        max-width: 250px;
+                        text-transform: uppercase;
+                      }
+
+                      @-webkit-keyframes criss-cross-left {
+                        0% {
+                          left: -20px;
+                        }
+
+                        50% {
+                          left: 50%;
+                          width: 20px;
+                          height: 20px;
+                        }
+
+                        100% {
+                          left: 50%;
+                          width: 375px;
+                          height: 375px;
+                        }
+                      }
+
+                      @keyframes criss-cross-left {
+                        0% {
+                          left: -20px;
+                        }
+
+                        50% {
+                          left: 50%;
+                          width: 20px;
+                          height: 20px;
+                        }
+
+                        100% {
+                          left: 50%;
+                          width: 375px;
+                          height: 375px;
+                        }
+                      }
+
+                      @-webkit-keyframes criss-cross-right {
+                        0% {
+                          right: -20px;
+                        }
+
+                        50% {
+                          right: 50%;
+                          width: 20px;
+                          height: 20px;
+                        }
+
+                        100% {
+                          right: 50%;
+                          width: 375px;
+                          height: 375px;
+                        }
+                      }
+
+                      @keyframes criss-cross-right {
+                        0% {
+                          right: -20px;
+                        }
+
+                        50% {
+                          right: 50%;
+                          width: 20px;
+                          height: 20px;
+                        }
+
+                        100% {
+                          right: 50%;
+                          width: 375px;
+                          height: 375px;
+                        }
+                      }
+
+                      .btn-11 {
+                        position: relative;
+                        color: #674fa2;
+                      }
+
+                      .btn-11:before,
+                      .btn-11:after {
+                        position: absolute;
+                        top: 50%;
+                        content: "";
+                        width: 20px;
+                        height: 20px;
+                        background-color: #674fa2;
+                        border-radius: 50%;
+                      }
+
+                      .btn-11:before {
+                        left: -20px;
+                        transform: translate(-50%, -50%);
+                      }
+
+                      .btn-11:after {
+                        right: -20px;
+                        transform: translate(50%, -50%);
+                      }
+
+                      .btn-11:hover {
+                        color: #fff;
+                      }
+
+                      .btn-11:hover:before {
+                        -webkit-animation: criss-cross-left 0.8s both;
+                        animation: criss-cross-left 0.8s both;
+                        -webkit-animation-direction: alternate;
+                        animation-direction: alternate;
+                      }
+
+                      .btn-11:hover:after {
+                        -webkit-animation: criss-cross-right 0.8s both;
+                        animation: criss-cross-right 0.8s both;
+                        -webkit-animation-direction: alternate;
+                        animation-direction: alternate;
+                      }
+                      /*End hover*/
+                    </style>
+
+<div
+id="introduction"
+style="
+  display: flex;
+  background-color: rgba(103, 80, 164, 0.5);
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Đảm bảo div chiếm toàn bộ chiều ngang của trang */
+"
+>
+<span id="vtdd-logotext" style="color: white; font-size: 36px; font-weight: bold;">
+  Easy-Buy Thế giới Đồng Hồ
+</span>
+</div>
+
+                    <!--Begin: Slider-->
+                    <div class="slider">
+                      <div class="slide-wrapper">
+                        <div class="slide">
+                          <img
+                            class="slide-img"
+                            src="../src/assets/img/slide1.png"
+                            alt="Slide1"
+                          />
+                        </div>
+                        <div class="slide">
+                          <img
+                            class="slide-img"
+                            src="../src/assets/img/slide2.png"
+                            alt="Slide2"
+                          />
+                        </div>
+                        <div class="slide">
+                          <img
+                            class="slide-img"
+                            src="../src/assets/img/slide3.png"
+                            alt="Slide3"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <!-- /BREADCRUMB -->
-
-                    <div class="row layout-top-spacing">
-
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
-
-
-                            <div class="single-post-content">
-
-                                <div class="featured-image">
-
-                                    <div class="featured-image-overlay"></div>
-
-                                    <div class="post-header">
-
-                                        <div class="post-title">
-                                            <h1 class="mb-0">List of Best Restaurant WordPress Themes</h1>
-                                        </div>
-
-                                        <div class="post-meta-info d-flex justify-content-between">
-
-                                            <div class="media">
-                                                <img src="../src/assets/img/profile-12.jpeg" alt="profile">
-                                                <div class="media-body">
-                                                    <h5>Kelly Young</h5>
-                                                    <p>15 May 2022</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="align-self-center">
-                                                <button class="btn btn-success btn-icon btn-share btn-rounded">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-share-2">
-                                                        <circle cx="18" cy="5" r="3"></circle>
-                                                        <circle cx="6" cy="12" r="3"></circle>
-                                                        <circle cx="18" cy="19" r="3"></circle>
-                                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                                    </svg>
-                                                </button>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="post-content">
-
-                                    <p class="mb-5">Aenean non tempor justo. Donec faucibus sapien a urna interdum
-                                        porta. Quisque fermentum nisi felis, quis aliquam quam volutpat porta. Nullam
-                                        aliquet scelerisque massa, quis tincidunt velit. Vivamus semper placerat ornare.
-                                        Maecenas eget accumsan eros. Donec non felis vitae tortor elementum euismod sit
-                                        amet vitae risus. Nam nunc turpis, porttitor ut tempor eu, efficitur nec risus.
-                                    </p>
-
-                                    <h4>Cinyras ea tulit in inducit qui mater</h4>
-
-                                    <p class="mb-5">Lorem markdownum facit? Hinc tutus serisque, mihi iaculum curam,
-                                        vicibus aliquando se posses gentis quidem. Meta tenebat diversa dixerat
-                                        celeberrimus molle require; prendique urnam Pyreneus? Haut mei sive digna
-                                        noctisque percussit dicta, in pars certaminis iuvenalis. Praemonuisse esse inter
-                                        in huic, Cinyras pallentem vi sistere cubat ne causa.</p>
-
-                                    <h4>Utque tu canibus</h4>
-
-                                    <p class="mb-5">Possent quippe. Conata fera ab Hersilie iam auditur haesit. Culpa
-                                        ignis retia Aonides ictus crescendo micantes, petere, ambustaque vicem in
-                                        digitos iubet cornigeris.</p>
-
-                                    <ul class="mb-5">
-                                        <li class="mb-1">Consectetur adipiscing elit</li>
-                                        <li class="mb-1">Integer massa</li>
-                                        <li class="mb-1">Facilisis nisl aliquet</li>
-                                    </ul>
-
-                                    <h4>Fregit aut Caystro equos</h4>
-
-                                    <p>Manet pro aere superest adiacet sua purpura Tereus in multis conantem culpa,
-                                        inque fingit et referebat? Materiaque mentes et, quo omnia captiva ore mandat
-                                        cepit triformis filia. Prius sorte nomina in repellite sentit facunde te aures,
-                                        vires.</p>
-
-
-                                    <hr class="my-5">
-
-                                    <h2 class="my-4">Code Block</h2>
-
-                                    <div class="code-section-container show-code">
-
-                                        <div class="code-section text-left">
-                                            <pre>
-npm install </pre>
-                                        </div>
-                                    </div>
-
-                                    <h2 class="mb-4 mt-5">Code Block with Toggle</h2>
-
-                                    <div class="code-section-container show-code mb-5">
-
-                                        <button class="btn toggle-code-snippet"><span>Code</span> <svg
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-chevron-down toggle-code-icon">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg></button>
-
-                                        <div class="code-section text-left">
-                                            <pre>
-&lt;button type=&quot;button&quot; onclick=&quot;document.getElementById('demo').innerHTML = Date()&quot;&gt;
-    Click me to display Date and Time.
-&lt;/button&gt; </pre>
-                                        </div>
-                                    </div>
-
-                                    <p class="mb-5">Fama creatis cum; ait atque et ictaque stabat, si texit continuere
-                                        exsatiata vestes, humana arces. Moriens carissime pudet dextra et aures micantes
-                                        est, in. Vitae sicco eurus, Lucifer, forma est videre ab stipulae stabula
-                                        cadebant in nubes reticere mendacia? Adice Ladon petis. Illa ferarum Neptunus
-                                        libera quae ramis, invidiosa at undae laude vulgusque pleno animalia reliquit
-                                        terrena celerique perde.</p>
-
-                                    <h4>Nocte populusque</h4>
-
-                                    <p>Lorem markdownum, ponere patent ista, Cadme, adesse humum non forem putares;
-                                        adiuro ore viresque est. Inde labores si sustinet regia, levi oris pascere!
-                                        Rhodon ad lingua perdidit inpia alis! Maiorque de duro!</p>
-
-                                    <p class="mb-5">Sit et angues referente proxima Emathiique nemo: herbae servant eo
-                                        corpus cornua tenuata recuso; natis parentem. Nisi nec aquarum, nymphae.</p>
-
-                                    <img src="../src/assets/img/lightbox-3.jpeg" alt="image-1"
-                                        class="full-width img-fluid mt-4 mb-5">
-
-                                    <h4>Novato extrema monimenta clivo ille</h4>
-
-                                    <p class="mb-5">Recessit mox patrem ille mea, tumulatus teneri hominis, favilla enim
-                                        recentes deam cur nocte pro eburnea. Favilla iam suis horruerant Chiae
-                                        quotiensque ingemuit locumque ducere postquam alebat. Iovi caeli esse superet
-                                        contraria conscia transierant verae; ut vetuere, suo gerat lumina rugis
-                                        velletque. Facta innecte de relicta Chrysenque morte, laedor dea aequaret dedit!
-                                        Sustinui attulit proles potentior.</p>
-
-
-                                    <h4>Aliquod corpora sororibus crimine ornata</h4>
-
-                                    <p class="mb-5">Est convicia et nubibus negate. In nisi inbellibus sui, cruribus
-                                        vult hostes solum invitat. Vino faciam stratis; non modo in eurus igitur, ambit,
-                                        mentitus periclo? Ullo dextra, extemplo commenta ultima, quid ire vos toto quia,
-                                        in habili Gradivus ferarum certaminis attulerat.</p>
-
-
-                                    <h4>Nemus dolet monstravit</h4>
-
-                                    <p class="mb-5">Est et hic volucres, rursus; simul, cauda tamen cacumine pars
-                                        intendensque . Maius dignior caret coniuge, demugitaeque duce, exponimur anus
-                                        inritata. Quoque sum casusve corpora, dat caecis doloris scelus domesticus
-                                        laboris heu quod reliquit. Albenti infra sed Pergama vivere fusus de fecerat
-                                        sublime prosunt illic. Consensu pavet insistit terras!</p>
-
-                                    <hr class="my-5">
-
-                                    <div class="text-center mb-5">
-                                        <img src="../src/assets/img/slider-3.jpeg" alt="image-1" class="img-fluid">
-                                    </div>
-
-                                    <p>It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                        that it has a more-or-less normal distribution of letters, as opposed to using
-                                        'Content here, content here', making it look like readable English. Many desktop
-                                        publishing packages and web page editors now use Lorem Ipsum as their default
-                                        model text, and a search for 'lorem ipsum' will uncover many web sites still in
-                                        their infancy. Various versions have evolved over the years, sometimes by
-                                        accident, sometimes on purpose (injected humour and the like).</p>
-
-
-                                </div>
-
-
-                                <div class="post-info">
-
-                                    <hr>
-
-                                    <div class="post-tags mt-5">
-
-                                        <span class="badge badge-primary mb-2">Admin</span>
-                                        <span class="badge badge-primary mb-2">Themeforeset</span>
-                                        <span class="badge badge-primary mb-2">Dashboard</span>
-                                        <span class="badge badge-primary mb-2">Top 10</span>
-
-                                    </div>
-
-                                    <div class="post-dynamic-meta mt-5 mb-5">
-
-                                        <button class="btn btn-secondary me-4 mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-heart">
-                                                <path
-                                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                                                </path>
-                                            </svg>
-                                            <span class="btn-text-inner">1.1k</span>
-                                        </button>
-
-                                        <div class="avatar--group mb-2">
-                                            <div class="avatar avatar-sm m-0">
-                                                <img alt="avatar" src="../src/assets/img/profile-16.jpeg"
-                                                    class="rounded-circle">
-                                            </div>
-                                            <div class="avatar avatar-sm">
-                                                <img alt="avatar" src="../src/assets/img/delete-user-4.jpeg"
-                                                    class="rounded-circle">
-                                            </div>
-                                            <div class="avatar avatar-sm">
-                                                <img alt="avatar" src="../src/assets/img/profile-5.jpeg"
-                                                    class="rounded-circle">
-                                            </div>
-                                            <div class="avatar avatar-sm">
-                                                <span class="avatar-title rounded-circle">AG</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-
-                                    <h2 class="mb-5">Comments <span class="comment-count">(4)</span></h2>
-
-                                    <div class="post-comments">
-
-                                        <div class="media mb-5 pb-5 primary-comment">
-                                            <!-- <img class="me-4" src="../src/assets/img/profile-2.jpeg" alt="pic1"> -->
-                                            <div class="avatar me-4">
-                                                <img alt="avatar" src="../src/assets/img/profile-2.jpeg"
-                                                    class="rounded-circle" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading mb-1">Daisy Andrason</h5>
-                                                <div class="meta-info mb-0">14 April</div>
-                                                <p class="media-text mt-2 mb-0">Fusce condimentum cursus mauris et
-                                                    ornare. Mauris fermentum mi id sollicitudin viverra. Aenean
-                                                    dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
-                                                    neque eu, gravida neque.</p>
-
-                                                <!-- <button class="btn btn-success btn-reply">Reply</button> -->
-                                                <button class="btn btn-success btn-icon btn-reply btn-rounded">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2">
-                                                        <path
-                                                            d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-
-                                                <!--  -->
-                                                <div class="media mb-4 mt-4">
-                                                    <!-- <img class="me-4" src="../src/assets/img/profile-3.jpeg" alt="pic1"> -->
-                                                    <div class="avatar me-4">
-                                                        <img alt="avatar" src="../src/assets/img/profile-3.jpeg"
-                                                            class="rounded-circle" />
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h5 class="media-heading mb-1">Xavier</h5>
-                                                        <div class="meta-info mb-0">15 April</div>
-                                                        <p class="media-text mt-2 mb-0">Fusce condimentum cursus mauris
-                                                            et ornare. Mauris fermentum mi id sollicitudin viverra.
-                                                            Aenean dignissim sed ante eget dapibus. Sed dapibus nulla
-                                                            elementum, rutrum neque eu, gravida neque.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="media mt-4">
-                                                    <!-- <img class="me-4" src="../src/assets/img/profile-25.jpeg" alt="pic1"> -->
-                                                    <div class="avatar me-4">
-                                                        <img alt="avatar" src="../src/assets/img/profile-25.jpeg"
-                                                            class="rounded-circle" />
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h5 class="media-heading mb-1">Mary McDonald</h5>
-                                                        <div class="meta-info mb-0">15 April</div>
-                                                        <p class="media-text mt-2 mb-0">Fusce condimentum cursus mauris
-                                                            et ornare. Mauris fermentum mi id sollicitudin viverra.
-                                                            Aenean dignissim sed ante eget dapibus. Sed dapibus nulla
-                                                            elementum, rutrum neque eu, gravida neque.</p>
-                                                    </div>
-                                                </div>
-                                                <!--  -->
-                                            </div>
-                                        </div>
-
-                                        <div class="media mb-5 pb-5 primary-comment">
-                                            <!-- <img class="me-4" src="../src/assets/img/profile-12.jpeg" alt="pic1"> -->
-                                            <div class="avatar me-4">
-                                                <img alt="avatar" src="../src/assets/img/profile-12.jpeg"
-                                                    class="rounded-circle" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading mb-1">Kelly Young</h5>
-                                                <div class="meta-info mb-0">12 April</div>
-                                                <p class="media-text mt-2 mb-0">Fusce condimentum cursus mauris et
-                                                    ornare. Mauris fermentum mi id sollicitudin viverra. Aenean
-                                                    dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
-                                                    neque eu, gravida neque.</p>
-
-                                                <button class="btn btn-success btn-icon btn-reply btn-rounded">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2">
-                                                        <path
-                                                            d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-
-                                                <!--  -->
-                                                <div class="media mt-4">
-                                                    <!-- <img class="me-4" src="../src/assets/img/profile-30.png" alt="pic1"> -->
-                                                    <div class="avatar me-4">
-                                                        <img alt="avatar" src="../src/assets/img/profile-21.jpeg"
-                                                            class="rounded-circle" />
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h5 class="media-heading mb-1">Andy King</h5>
-                                                        <div class="meta-info mb-0">13 April</div>
-                                                        <p class="media-text mt-2 mb-0">Fusce condimentum cursus mauris
-                                                            et ornare. Mauris fermentum mi id sollicitudin viverra.
-                                                            Aenean dignissim sed ante eget dapibus. Sed dapibus nulla
-                                                            elementum, rutrum neque eu, gravida neque.</p>
-                                                    </div>
-                                                </div>
-                                                <!--  -->
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media mb-5 pb-5 primary-comment">
-                                            <!-- <img class="me-4" src="../src/assets/img/profile-9.jpeg" alt="pic1"> -->
-                                            <div class="avatar me-4">
-                                                <img alt="avatar" src="../src/assets/img/profile-9.jpeg"
-                                                    class="rounded-circle" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading mb-1">Alma Clarke</h5>
-                                                <div class="meta-info mb-0">10 April</div>
-                                                <p class="media-text mt-2 mb-0">Fusce condimentum cursus mauris et
-                                                    ornare. Mauris fermentum mi id sollicitudin viverra. Aenean
-                                                    dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
-                                                    neque eu, gravida neque.</p>
-
-                                                <button class="btn btn-success btn-icon btn-reply btn-rounded">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2">
-                                                        <path
-                                                            d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="post-pagination">
-
-                                            <div class="pagination-no_spacing">
-
-                                                <ul class="pagination">
-                                                    <li><a href="javascript:void(0);" class="prev"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-chevron-left">
-                                                                <polyline points="15 18 9 12 15 6"></polyline>
-                                                            </svg></a></li>
-                                                    <li><a href="javascript:void(0);">1</a></li>
-                                                    <li><a href="javascript:void(0);" class="active">2</a></li>
-                                                    <li><a href="javascript:void(0);">3</a></li>
-                                                    <li><a href="javascript:void(0);" class="next"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-chevron-right">
-                                                                <polyline points="9 18 15 12 9 6"></polyline>
-                                                            </svg></a></li>
-                                                </ul>
-
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="post-form mt-5">
-
-                                        <div class="section add-comment">
-                                            <div class="info">
-                                                <h6 class="">Add Comment</h6>
-                                                <p>Add your <span class="text-success">comment</span> to this post.</p>
-
-                                                <div class="row mt-4">
-
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Write Comment</label>
-                                                            <textarea class="form-control" cols="30"
-                                                                rows="10"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="email" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="text-end mt-4">
-                                                    <button class="btn btn-primary me-3">Clear</button>
-                                                    <button class="btn btn-success">Add Comment</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-
+                    <!--End: Slider-->
+                    <div style="background-color: #fff">
+                      <p class="bigtitlehome" style="text-align: center">
+                        CÁC HÃNG ĐỒNG HỒ CHÚNG TÔI ĐANG KINH DOANH
+                      </p>
+                      <div
+                        id="productKD"
+                        style="
+                          margin-top: 30px;
+                          margin-left: 50px;
+                          margin-right: 50px;
+                        "
+                      >
+                        <div
+                          style="
+                            width: 200px;
+                            height: 200px;
+                            background-color: rgba(103, 80, 164, 0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            id="pdIphone"
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              position: relative;
+                            "
+                          >
+                            <!-- <p onclick="window.location.href='#casioBrandInfo'" class="mediumtitlehome"
+                                          style="cursor: pointer;color:#fff ;text-align: center;background-color: rgba(103, 80, 164, 0.6);position: absolute;width:100% ;top:50%;transform: translateY(-50%);line-height: 1.5;">
+                                          Casio</p> -->
+                            <div
+                              style="
+                                cursor: pointer;
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 10;
+                              "
+                            >
+                              <a
+                                id="theAtrongHoverMauTim"
+                                class="btn-11 mediumtitlehome"
+                                onclick="window.location.href='#casioBrandInfo'"
+                                >Casio</a
+                              >
                             </div>
-
-
+                            <div
+                              style="
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 9;
+                                background-color: #b3a7d1;
+                              "
+                            ></div>
+                            <img
+                              src="../src/assets/img/118_AEQ-110W-3AVDF-699x699.png"
+                              style="opacity: 0.9"
+                              alt=""
+                              width="180px"
+                            />
+                          </div>
                         </div>
 
+                        <div
+                          style="
+                            width: 200px;
+                            height: 200px;
+                            background-color: rgba(103, 80, 164, 0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            style="
+                              width: 180px;
+                              height: 180px;
+                              background-color: #fff;
+                            "
+                          >
+                            <div
+                              id="pdOppo"
+                              style="
+                                display: flex;
+                                flex-direction: column;
+                                position: relative;
+                              "
+                            >
+                              <!-- <p onclick="window.location.href='#appleBrandInfo'" class="mediumtitlehome"
+                                            style="cursor: pointer;color:#fff ;text-align: center;background-color: rgba(103, 80, 164, 0.6);position: absolute;width:100% ;top:50%;transform: translateY(-50%);line-height: 1.5;">
+                                            Apple</p> -->
+                              <div
+                                style="
+                                  cursor: pointer;
+                                  display: flex;
+                                  width: 180px;
+                                  height: 28px;
+                                  position: absolute;
+                                  top: 50%;
+                                  transform: translateY(-50%);
+                                  z-index: 10;
+                                "
+                              >
+                                <a
+                                  id="theAtrongHoverMauTim2"
+                                  class="btn-11 mediumtitlehome"
+                                  onclick="window.location.href='#appleBrandInfo'"
+                                  >Apple</a
+                                >
+                              </div>
+                              <div
+                                style="
+                                  display: flex;
+                                  width: 180px;
+                                  height: 28px;
+                                  position: absolute;
+                                  top: 50%;
+                                  transform: translateY(-50%);
+                                  z-index: 9;
+                                  background-color: #b3a7d1;
+                                "
+                              ></div>
+                              <img
+                                src="../src/assets/img/0011842_midnight_550.png"
+                                style="opacity: 0.9"
+                                alt=""
+                                width="180px"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          style="
+                            width: 200px;
+                            height: 2020x;
+                            background-color: rgba(103, 80, 164, 0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            id="pdPixel"
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              position: relative;
+                            "
+                          >
+                          
+                            <div
+                              style="
+                                cursor: pointer;
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 10;
+                              "
+                            >
+                              <a
+                                id="theAtrongHoverMauTim3"
+                                class="btn-11 mediumtitlehome"
+                                onclick="window.location.href='#citizenBrandInfo'"
+                                >Citizen</a
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 9;
+                                background-color: #b3a7d1;
+                              "
+                            ></div>
+                            <img
+                              src="../src/assets/img/AN8195-58E-699x699.png"
+                              style="opacity: 0.9"
+                              alt=""
+                              width="180px"
+                            />
+                          </div>
+                        </div>
+
+                        <div
+                          style="
+                            width: 200px;
+                            height: 200px;
+                            background-color: rgba(103, 80, 164, 0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            id="pdRealme"
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              position: relative;
+                            "
+                          >
+                            <!-- <p onclick="window.location.href='#orientBrandInfo'" class="mediumtitlehome"
+                                          style="cursor: pointer;color:#fff ;text-align: center;background-color: rgba(103, 80, 164, 0.6);position: absolute;width:100% ;top:50%;transform: translateY(-50%);line-height: 1.5;">
+                                          Orient</p> -->
+                            <div
+                              style="
+                                cursor: pointer;
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 10;
+                              "
+                            >
+                              <a
+                                id="theAtrongHoverMauTim4"
+                                class="btn-11 mediumtitlehome"
+                                onclick="window.location.href='#orientBrandInfo'"
+                                >Orient</a
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 9;
+                                background-color: #b3a7d1;
+                              "
+                            ></div>
+                            <img
+                              src="../src/assets/img/FAC08003A0-1-699x699.png"
+                              style="opacity: 0.9"
+                              s
+                              alt=""
+                              width="180px"
+                            />
+                          </div>
+                        </div>
+
+                        <div
+                          style="
+                            width: 200px;
+                            height: 200px;
+                            background-color: rgba(103, 80, 164, 0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                          <div
+                            id="pdSamsung"
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              position: relative;
+                            "
+                          >
+                            <!-- <p onclick="window.location.href='#seikoBrandInfo'" class="mediumtitlehome"
+                                          style="cursor: pointer;color:#fff ;text-align: center;background-color: rgba(103, 80, 164, 0.6);position: absolute;width:100% ;top:50%;transform: translateY(-50%);line-height: 1.5;">
+                                          Seiko</p> -->
+                            <div
+                              style="
+                                cursor: pointer;
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 10;
+                              "
+                            >
+                              <a
+                                id="theAtrongHoverMauTim5"
+                                class="btn-11 mediumtitlehome"
+                                onclick="window.location.href='#seikoBrandInfo'"
+                                >Seiko</a
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                width: 180px;
+                                height: 28px;
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 9;
+                                background-color: #b3a7d1;
+                              "
+                            ></div>
+                            <img
+                              src="../src/assets/img/SRPG41K1.png"
+                              style="opacity: 0.9"
+                              alt=""
+                              width="180px"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
+                    <div
+                      id="casioBrandInfo"
+                      style="
+                        background-color: rgba(103, 80, 164, 0.4);
+                        margin-top: 56px;
+                        padding-bottom: 56px;
+                      "
+                    >
+                      <!--<p class="bigtitlehome" style="text-align:center ;margin-top: 50px;">SẢN PHẨM BÁN CHẠY</p>-->
+                      <p
+                        class="bigtitlehome"
+                        style="text-align: center; margin-top: 50px"
+                      >
+                        CASIO
+                      </p>
+                      <div id="productBC">
+                        <div class="clockBrandContent">
+                          <div class="col30">
+                            <img
+                              src="../src/assets/img/118_AEQ-110W-3AVDF-699x699.png"
+                              alt=""
+                              width="250px"
+                              alt=""
+                            />
+                          </div>
+
+                          <p
+                            style="
+                              text-align: justify;
+                              display: flex;
+                              align-items: center;
+                            "
+                            class="col70 smalltitlehome"
+                          >
+                            Đồng hồ Casio là một trong những thương hiệu đồng hồ
+                            nổi tiếng và được yêu thích trên toàn thế giới. Với
+                            thiết kế đơn giản, thời trang và đa dạng về chức
+                            năng, đồng hồ Casio đã trở thành một lựa chọn phổ
+                            biến cho các tín đồ thời trang cũng như những người
+                            đam mê công nghệ. Không chỉ đơn thuần là một chiếc
+                            đồng hồ báo giờ, đồng hồ Casio còn tích hợp nhiều
+                            tính năng hữu ích như đồng hồ định vị GPS, đồng hồ
+                            thông minh, đồng hồ chống nước, đồng hồ đo nhịp tim
+                            và nhiều tính năng khác. Với chất lượng đáng tin cậy
+                            và giá cả hợp lý, đồng hồ Casio là một lựa chọn
+                            tuyệt vời cho bất kỳ ai đang tìm kiếm một chiếc đồng
+                            hồ đa năng và thời trang.
+                          </p>
+                        </div>
+                        <img
+                          src="../src/assets/img/banerCasioBaby.png"
+                          alt=""
+                          width="250px"
+                          style="width: 100%; margin-top: 12px"
+                        />
+                        <img
+                          src="../src/assets/img/banerCasioGsock.png"
+                          alt=""
+                          width="250px"
+                          style="width: 100%; margin-top: 14px"
+                        />
+
+                        <hr
+                          id="appleBrandInfo"
+                          style="margin-top: 50px; margin-bottom: 50px"
+                        />
+
+                        <p class="bigtitlehome" style="text-align: center">
+                          APPLE
+                        </p>
+                        <div class="clockBrandContent">
+                          <div class="col30">
+                            <img
+                              src="../src/assets/img/0011842_midnight_550.png"
+                              alt=""
+                              width="250px"
+                              alt=""
+                            />
+                          </div>
+                          <p
+                            style="
+                              text-align: justify;
+                              display: flex;
+                              align-items: center;
+                            "
+                            class="col70 smalltitlehome"
+                          >
+                            Apple Watch là một trong những sản phẩm đồng hồ
+                            thông minh được yêu thích nhất hiện nay. Với thiết
+                            kế đẹp mắt, tính năng thông minh và tích hợp nhiều
+                            chức năng hữu ích, Apple Watch đã trở thành một lựa
+                            chọn phổ biến cho những người yêu công nghệ. Với khả
+                            năng đo nhịp tim, theo dõi hoạt động thể chất, kiểm
+                            tra sức khỏe và tích hợp hệ thống thông báo từ các
+                            ứng dụng trên điện thoại, Apple Watch giúp người
+                            dùng có thể quản lý công việc, cuộc sống và sức khỏe
+                            của mình một cách tiện lợi hơn. Đặc biệt, tính năng
+                            định vị GPS và hướng dẫn đường đi cũng là điểm nhấn
+                            đáng chú ý của Apple Watch, giúp người dùng dễ dàng
+                            điều hướng và khám phá thế giới xung quanh một cách
+                            thuận tiện hơn. Với chất lượng và độ tin cậy của
+                            thương hiệu Apple, Apple Watch là một sự lựa chọn
+                            tuyệt vời cho những ai muốn sở hữu một chiếc đồng hồ
+                            thông minh đẳng cấp và hiện đại.
+                          </p>
+                        </div>
+                        <img
+                          src="../src/assets/img/apple_baner.jpg"
+                          alt=""
+                          style="width: 100%; margin-bottom: 14px"
+                        />
+                        <img
+                          src="../src/assets/img/apple_banner3.jpg"
+                          alt=""
+                          style="width: 100%"
+                        />
+
+                        <hr
+                          id="citizenBrandInfo"
+                          style="margin-top: 50px; margin-bottom: 50px"
+                        />
+
+                        <p class="bigtitlehome" style="text-align: center">
+                          CITIZEN
+                        </p>
+                        <div class="clockBrandContent" style="display: flex">
+                          <div class="col30">
+                            <img
+                              src="../src/assets/img/AN8195-58E-699x699.png"
+                              alt=""
+                              width="250px"
+                              alt=""
+                            />
+                          </div>
+                          <p
+                            style="
+                              text-align: justify;
+                              display: flex;
+                              align-items: center;
+                            "
+                            class="col70 smalltitlehome"
+                          >
+                            Đồng hồ Citizen là một trong những thương hiệu đồng
+                            hồ nổi tiếng và được yêu thích trên toàn thế giới.
+                            Với hơn 100 năm kinh nghiệm trong sản xuất đồng hồ,
+                            Citizen đã tạo ra những sản phẩm đồng hồ chất lượng
+                            cao, thiết kế đẹp mắt và tính năng đa dạng. Đồng hồ
+                            Citizen là sự kết hợp tuyệt vời giữa phong cách,
+                            chức năng và độ chính xác, với khả năng chống nước,
+                            chống sốc và tích hợp các chức năng như đo độ sâu,
+                            đo tốc độ, đo thời gian, đo khoảng cách và nhiều
+                            tính năng khác. Đặc biệt, đồng hồ Citizen cũng nổi
+                            tiếng với công nghệ Eco-Drive tiên tiến, cho phép sử
+                            dụng năng lượng ánh sáng để làm năng lượng cho đồng
+                            hồ, giúp tiết kiệm pin và bảo vệ môi trường. Với
+                            chất lượng và độ tin cậy của thương hiệu Citizen,
+                            đồng hồ Citizen là sự lựa chọn hoàn hảo cho những ai
+                            đang tìm kiếm một chiếc đồng hồ đa năng và bền vững.
+                          </p>
+                        </div>
+                        <img
+                          src="../src/assets/img/citizen_banner1.jpg"
+                          alt=""
+                          style="width: 100%; margin-bottom: 14px"
+                        />
+                        <img
+                          src="../src/assets/img/citizen_banner2.jpg"
+                          alt=""
+                          style="width: 100%; margin-bottom: 14px"
+                        />
+                        <img
+                          src="../src/assets/img/citizen_banner4.jpg"
+                          alt=""
+                          style="width: 100%"
+                        />
+
+                        <hr
+                          id="orientBrandInfo"
+                          style="margin-top: 50px; margin-bottom: 50px"
+                        />
+
+                        <p class="bigtitlehome" style="text-align: center">
+                          ORIENT
+                        </p>
+                        <div class="clockBrandContent">
+                          <div class="col30">
+                            <img
+                              src="../src/assets/img/FAC08003A0-1-699x699.png"
+                              alt=""
+                              width="250px"
+                              alt=""
+                            />
+                          </div>
+                          <p
+                            style="
+                              text-align: justify;
+                              display: flex;
+                              align-items: center;
+                            "
+                            class="col70 smalltitlehome"
+                          >
+                            Đồng hồ Orient là một trong những thương hiệu đồng
+                            hồ nổi tiếng và được đánh giá cao trong ngành công
+                            nghiệp đồng hồ. Với hơn 70 năm kinh nghiệm sản xuất
+                            đồng hồ, Orient đã tạo ra những sản phẩm đồng hồ
+                            chất lượng cao, với thiết kế tinh tế và độ chính xác
+                            cao. Đồng hồ Orient được sản xuất với các linh kiện
+                            chính hãng và được lắp ráp bằng tay bởi các thợ đồng
+                            hồ tài ba, giúp tăng độ chính xác và độ bền của sản
+                            phẩm. Đồng hồ Orient còn nổi tiếng với các tính năng
+                            đa dạng như đo thời gian, ngày giờ, lịch và tính
+                            năng đo độ sâu, giúp người dùng sử dụng đồng hồ theo
+                            nhiều mục đích khác nhau. Đặc biệt, đồng hồ Orient
+                            cũng được trang bị tính năng cộng hưởng tự động, cho
+                            phép đồng hồ sử dụng chính chuyển động của cổ tay để
+                            làm năng lượng cho đồng hồ, giúp tiết kiệm năng
+                            lượng và kéo dài tuổi thọ của pin. Với chất lượng và
+                            độ tin cậy của thương hiệu Orient, đồng hồ Orient là
+                            sự lựa chọn tuyệt vời cho những ai đang tìm kiếm một
+                            chiếc đồng hồ chất lượng cao và đáng tin cậy.
+                          </p>
+                        </div>
+                        <img
+                          src="../src/assets/img/orient_banner1.jpg"
+                          alt=""
+                          style="width: 100%; margin-bottom: 14px"
+                        />
+                        <img
+                          src="../src/assets/img/orient_banner2.jpg"
+                          alt=""
+                          style="width: 100%"
+                        />
+
+                        <hr
+                          id="seikoBrandInfo"
+                          style="margin-top: 50px; margin-bottom: 50px"
+                        />
+
+                        <p class="bigtitlehome" style="text-align: center">
+                          SEIKO
+                        </p>
+                        <div class="clockBrandContent">
+                          <div class="col30">
+                            <img
+                              src="../src/assets/img/SRPG41K1.png"
+                              alt=""
+                              width="250px"
+                              alt=""
+                            />
+                          </div>
+                          <p
+                            style="
+                              text-align: justify;
+                              display: flex;
+                              align-items: center;
+                            "
+                            class="col70 smalltitlehome"
+                          >
+                            Đồng hồ Seiko là một trong những thương hiệu đồng hồ
+                            nổi tiếng và được yêu thích trên toàn thế giới. Với
+                            hơn 130 năm kinh nghiệm trong sản xuất đồng hồ,
+                            Seiko đã tạo ra những sản phẩm đồng hồ chất lượng
+                            cao, với thiết kế đẹp mắt và tính năng đa dạng. Đồng
+                            hồ Seiko được sản xuất với các linh kiện chính hãng
+                            và được lắp ráp bằng tay bởi các thợ đồng hồ tài ba,
+                            giúp tăng độ chính xác và độ bền của sản phẩm. Đồng
+                            hồ Seiko còn nổi tiếng với các tính năng đa dạng như
+                            đo thời gian, ngày giờ, lịch và tính năng đo độ sâu,
+                            giúp người dùng sử dụng đồng hồ theo nhiều mục đích
+                            khác nhau. Đặc biệt, đồng hồ Seiko cũng được trang
+                            bị tính năng cộng hưởng tự động hoặc solar, cho phép
+                            đồng hồ sử dụng chính chuyển động của cổ tay hoặc
+                            ánh sáng để làm năng lượng cho đồng hồ, giúp tiết
+                            kiệm năng lượng và kéo dài tuổi thọ của pin. Với
+                            chất lượng và độ tin cậy của thương hiệu Seiko, đồng
+                            hồ Seiko là sự lựa chọn hoàn hảo cho những ai đang
+                            tìm kiếm một chiếc đồng hồ đa năng và bền vững.
+                          </p>
+                        </div>
+                        <img
+                          src="../src/assets/img/seiko_banner1.jpg"
+                          alt=""
+                          style="width: 100%; margin-bottom: 14px"
+                        />
+                        <img
+                          src="../src/assets/img/seiko_banner2.jpg"
+                          alt=""
+                          style="width: 100%; margin-bottom: 14px"
+                        />
+                        <img
+                          src="../src/assets/img/seiko_banner3.jpg"
+                          alt=""
+                          style="width: 100%"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
+              </div>
             </div>
-
-
-
+          </div>
         </div>
-        <!--  END CONTENT AREA  -->
+      </div>
+      <!--  END CONTENT AREA  -->
     </div>
+  </body>
+  <!--  BEGIN FOOTER  -->
+  <app-footer></app-footer>
 
-</body>
-<!--  BEGIN FOOTER  -->
-<app-footer></app-footer>
-
-<!--  END FOOTER  -->
-
+  <!--  END FOOTER  -->
 </html>
