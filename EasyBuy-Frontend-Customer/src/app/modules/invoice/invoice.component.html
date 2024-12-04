@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Ecommerce Shop | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+    <!-- <link href="../../../assets/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    -->
+    <link href="../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" href="invoice.component.css">
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <!--  END CUSTOM STYLE FILE  -->
+</head>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<body class="" data-bs-spy="scroll" data-bs-bs-target="#navSection" data-bs-offset="140">
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container " id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <!--  END SIDEBAR  -->
+
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+
+                <div class="middle-content container-xxl p-0">
+                    
+                    <div class="row invoice layout-top-spacing layout-spacing">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            
+                            <div class="doc-container">
+    
+                                <div class="row">
+    
+                                    <div class="col-xl-9">
+    
+                                        <div class="invoice-container">
+                                            <div class="invoice-inbox">
+                                                
+                                                <div id="ct" class="">
+                                                    
+                                                    <div class="invoice-00001">
+                                                        <div class="content-section">
+        
+                                                            <div class="inv--head-section inv--detail-section">
+                                                            
+                                                                <div class="row">
+
+                                                                    <div class="col-sm-6 col-12 mr-auto">
+                                                                        <div class="d-flex">
+                                                                            <h3 class="in-heading align-self-center">Hóa đơn mua hàng</h3>
+                                                                        </div>
+                                                                        <p class="inv-street-addr mt-3">Địa chỉ cửa hàng: 273 An Dương Vương phường 3 Quận 5</p>
+                                                                        <br>                                                                        
+                                                                        <p class="inv-email-address"></p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-sm-6 text-sm-end">
+                                                                        <p class="inv-list-number mt-sm-3 pb-sm-2 mt-4"><span class="inv-title">Mã hóa đơn : </span> <span class="inv-number">{{order.code}}</span></p>
+                                                                        <p class="inv-created-date mt-sm-5 mt-3"><span class="inv-title">Ngày lập : </span> <span class="inv-date">{{convertDateToDMY(order.orderDate)}}</span></p>
+                                                                    </div>                                                                
+                                                                </div>
+                                                                
+                                                            </div>
+        
+                                                            <div class="inv--detail-section inv--customer-detail-section">
+    
+                                                                <div class="row">
+        
+                                                                    <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 align-self-center">
+                                                                        <p class="inv-to">Đến</p>
+                                                                    </div>
+    
+                                                                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 text-sm-end mt-sm-0 mt-5">
+                                                                        <h6 class=" inv-title">Từ</h6>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
+                                                                        <p class="inv-customer-name"> Tên người mua: {{user.name}}</p>
+                                                                        <p class="inv-street-addr">Địa chỉ: {{user.address}}</p>
+                                                                        <p class="inv-email-address">Email: {{user.email}}</p>
+                                                                        <p class="inv-email-address">Số điện thoại: {{user.phone}}</p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1 text-sm-end">
+                                                                        <p class="inv-customer-name">Easy Buy</p>
+                                                                        <p class="inv-street-addr">273 An Dương Vương </p>
+                                                                        <p class="inv-email-address">infomail.com</p>
+                                                                        <p class="inv-email-address">(123) 456 789</p>
+                                                                    </div>
+    
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <hr>
+                                                            <div class="inv--product-table-section">
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <thead class="">
+                                                                            <tr>
+                                                                                <th scope="col">Mã</th>
+                                                                                <th scope="col">Sản phẩm</th>
+                                                                                <th class="text-end" scope="col">SL</th>
+                                                                                <th class="text-end" scope="col">Giá</th>
+                                                                                <th class="text-end" scope="col">Tổng</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr *ngFor="let orderline of orderLine">
+                                                                                <td>{{orderline.product?.id}}</td>
+                                                                                <td>{{orderline.product?.productName}} - {{orderline.product?.model}} - {{orderline.product?.gender=== "1" ? "Nam" : "Nữ"}}</td>
+                                                                                <td class="text-end">{{orderline.quantity}}</td>
+                                                                                <td class="text-end">{{formatCurrencyVND(orderline.unitPrice)}}</td>
+                                                                                <td class="text-end">{{formatCurrencyVND(orderline.quantity*orderline.unitPrice)}}</td>
+                                                                            </tr>
+                                                                          
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="inv--total-amounts">
+                                                            
+                                                                <div class="row mt-4">
+                                                                    <div class="col-sm-5 col-12 order-sm-0 order-1">
+                                                                    </div>
+                                                                    <div class="col-sm-7 col-12 order-sm-1 order-0">
+                                                                        <div class="text-sm-end">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-8 col-7">
+                                                                                    <p class="">Tổng giá :</p>
+                                                                                </div>
+                                                                                <div class="col-sm-4 col-5">
+                                                                                    <p class="">{{formatCurrencyVND(subTotal)}}</p>
+                                                                                </div>
+                                                                                <div class="col-sm-8 col-7">
+                                                                                    <p class="">Giá giảm :</p>
+                                                                                </div>
+                                                                                <div class="col-sm-4 col-5">
+                                                                                    <p class="">{{formatCurrencyVND(order.orderDiscount)}}</p>
+                                                                                </div>
+                                                                                <div class="col-sm-8 col-7">
+                                                                                    <p class=" discount-rate">Tiền vận chuyển :</p>
+                                                                                </div>
+                                                                                <div class="col-sm-4 col-5">
+                                                                                    <p class="">{{formatCurrencyVND(order.shippingFee)}}</p>
+                                                                                </div>
+                                                                               <hr>
+                                                                                <div class="col-sm-8 col-7 grand-total-title mt-3">
+                                                                                    <h4 class="">Tổng thanh toán : </h4>
+                                                                                </div>
+                                                                                <div class="col-sm-4 col-5 grand-total-amount mt-3">
+                                                                                    <h4 class="">{{formatCurrencyVND(order.orderTotal)}}</h4>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+    
+                                                            </div>
+    
+                                                            <div class="inv--note">
+    
+                                                                <div class="row mt-4">
+                                                                    <div class="col-sm-12 col-12 order-sm-0 order-1 text-center">
+                                                                        <p>Cảm ơn vì đã mua hàng tại website của chúng tôi.</p>
+                                                                    </div>
+                                                                </div>
+    
+                                                            </div>
+        
+                                                        </div>
+                                                    </div> 
+                                                    
+                                                </div>
+        
+        
+                                            </div>
+        
+                                        </div>
+    
+                                    </div>
+                                    <!--
+                                    <div class="col-xl-3">
+    
+                                        <div class="invoice-actions-btn">
+    
+                                            <div class="invoice-action-btn">
+
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-md-3 col-sm-6">
+                                                        <a href="javascript:void(0);" class="btn btn-primary btn-send">Send Invoice</a>
+                                                    </div>
+                                                    <div class="col-xl-12 col-md-3 col-sm-6">
+                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-print  action-print">Print</a>
+                                                    </div>
+                                                    <div class="col-xl-12 col-md-3 col-sm-6">
+                                                        <a href="javascript:void(0);" class="btn btn-success btn-download">Download</a>
+                                                    </div>
+                                                    <div class="col-xl-12 col-md-3 col-sm-6">
+                                                        <a href="./app-invoice-edit.html" class="btn btn-dark btn-edit">Edit</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+    -->
+                                </div>
+                                
+                            </div>
+    
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--  BEGIN FOOTER  -->
+            <div class="footer-wrapper">
+                <div class="footer-section f-section-1">
+                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">DesignReset</a>, All rights reserved.</p>
+                </div>
+                <div class="footer-section f-section-2">
+                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+                </div>
+            </div>
+            <!--  END FOOTER  -->
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <!-- END PAGE LEVEL SCRIPTS -->
+</body>
+<!--  BEGIN FOOTER  -->
+<app-footer></app-footer>
+
+<!--  END FOOTER  -->
+
+</html>
+<!--
+"src/assets/src/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js",
+              "src/assets/src/plugins/src/mousetrap/mousetrap.min.js",
+              "src/assets/src/plugins/src/waves/waves.min.js"
+-->

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Ecommerce Shop | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+    <!-- <link href="../../../assets/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    -->
+    <link href="../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" href="cart.component.css">
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <!--  END CUSTOM STYLE FILE  -->
+</head>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<body>
+    <div class="main-container " id="container">
+        <div class="container my-5" *ngIf="cartShow.length > 0; else empty">
+            <h2 class="text-center mb-4">Giỏ hàng của bạn</h2>
+            <div class="cart-items" >
+                <div class="row cart-item p-3 mb-3 align-items-center" *ngFor="let cart of cartShow">
+                    <div class="col-md-2 text-center">
+                        <img [src]="'https://localhost:7238/'+cart.product.productImg" class="img-fluid rounded"
+                            alt="Product Image" [routerLink]="['/product-detail', cart.product.id]"
+                            style="cursor: pointer;">
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="product-name">{{cart.product.productName}} - {{cart.product.model}} -
+                            {{cart.product.color}} - {{cart.product.gender=== "1" ? "Nam" : "Nữ"}}
+                        </h5>
+                        <p class="text-muted">Mã sản phẩm: {{cart.product.id}}</p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <span
+                            class="price text-danger fw-bold">{{formatCurrencyVND(cart.quantity*(cart.product.priceToSell-cart.product.priceToSell*cart.product.discount))}}</span>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="quantity-controls">
+                            <button class="btn btn-outline-secondary btn-sm me-2" (click)="minusOne(cart.id)">-</button>
+                            <span class="quantity">{{cart.quantity}}</span>
+                            <button class="btn btn-outline-secondary btn-sm ms-2" (click)="plusOne(cart.id)">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-center">
+                        <button class="btn btn-outline-danger btn-sm"
+                            (click)="deleteProductFromCart(cart.id)">Xóa</button>
+                    </div>
+                </div>
+                <!-- Repeat cart-item div for each product in the cart -->
+            </div>
+
+            <!-- Tổng thanh toán -->
+            <div class="cart-summary mt-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4>Tổng cộng:</h4>
+                    <span class="total-price text-danger fw-bold">{{formatCurrencyVND(total_price)}}</span>
+                </div>
+                <div class="text-end mt-3">
+                    <button class="btn btn-primary" (click)="goToPayment()">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+        <ng-template #empty>
+            <div class="container">
+            <div class="empty-cart d-flex flex-column align-items-center justify-content-center text-center vh-100">
+                <h4 class="mb-2">Giỏ hàng của bạn đang trống</h4>
+                <p class="text-muted mb-4">Hãy khám phá sản phẩm và thêm vào giỏ hàng của bạn!</p>
+                <a  [routerLink]="['/products']" class="btn btn-primary">Mua sắm ngay</a>
+            </div>
+        </div>
+        </ng-template>
+        
+        
+
+    </div>
+
+
+</body>
+<app-footer></app-footer>
+
+</html>

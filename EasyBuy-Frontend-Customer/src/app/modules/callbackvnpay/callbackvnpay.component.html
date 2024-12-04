@@ -1,0 +1,5 @@
+<div *ngIf="loading">Đang xử lý...</div>
+    <div *ngIf="!loading">
+      <h2>{{ message }}</h2>
+      <button *ngIf="success" (click)="goToHome()">Quay lại trang chủ</button>
+    </div>

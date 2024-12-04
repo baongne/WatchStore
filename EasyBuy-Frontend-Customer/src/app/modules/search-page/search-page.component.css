@@ -1,0 +1,127 @@
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    padding: 15px;
+    text-align: left;
+    background-color: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.product-attribute {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 3px 0;
+}
+
+.product-attribute span {
+    font-weight: 500;
+    color: #444;
+}
+
+.pricing {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.price-discounted {
+    font-size: 1.1rem;
+    color: #e74c3c; /* màu đỏ cho giá đã giảm */
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price-original {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.price {
+    font-size: 1.1rem;
+    color: #27ae60; /* màu xanh cho giá bình thường */
+    font-weight: bold;
+}
+.product-image {
+    width: 100%;
+    height: 400px; /* Tăng kích thước hình ảnh */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.style-6 {
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.style-6:hover {
+    transform: translateY(-5px); /* Nhích lên khi hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng lớn hơn */
+}
+
+.product-details {
+    padding: 15px;
+    text-align: left;
+    background-color: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+}
+.paginations {
+    display: flex;
+    justify-content: center; /* Căn giữa */
+    margin: 20px 0; /* Khoảng cách margin phía trên và dưới */
+  }
+  
+  .btn-group {
+    display: flex;
+  }
+  
+  #radioBtn .btn {
+    padding: 10px 20px; /* Tăng kích thước nút */
+    font-size: 18px; /* Tăng kích thước chữ */
+    margin: 0 5px; /* Thêm khoảng cách giữa các nút */
+  }
+  
+  #radioBtn .notActive {
+    background-color: #ccc; /* Màu nền cho nút không kích hoạt */
+    border-color: #bbb; /* Viền cho nút không kích hoạt */
+  }
+  
+  #radioBtn .Active {
+    background-color: #007bff; /* Màu nền cho nút kích hoạt */
+    border-color: #007bff; /* Viền cho nút kích hoạt */
+    color: #fff; /* Màu chữ cho nút kích hoạt */
+  }
+  .form-range {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  input[type="range"] {
+    position: relative;
+    z-index: 1;
+  }
+  
+  input[type="range"]:first-of-type {
+    z-index: 2; /* Đặt thanh giá trị tối thiểu phía trên */
+  }
+  .product-container{
+    margin-top: 50px;
+  }
+  .main-container {
+    margin-left: -250px;
+  }

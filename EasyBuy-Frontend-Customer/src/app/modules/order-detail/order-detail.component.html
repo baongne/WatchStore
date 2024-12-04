@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Ecommerce Shop | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+    <!-- <link href="../../../assets/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    -->
+    <link href="../../../assets/layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" href="order-detail.component.css">
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <!--  END CUSTOM STYLE FILE  -->
+</head>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="content1">
+    <div class="d-flex justify-content-between mt-4 mb-2">
+        <div>
+            <div class="d-flex align-items-start">
+                <h5 class="text-bold">
+                    CHI TIẾT ĐƠN HÀNG
+                    <span class="badge badge-dark">{{ order.code }}</span>
+                </h5>
+            </div>
+            <p class="text-primary">Ngày tạo: {{ convertDateToDMY(order.orderDate) }}</p>
+        </div>
+        <div>
+            <div *ngIf="order.status!==0">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#statusModal" (click)="goToVnpay()">
+                    Thanh toán VNPAY
+                </button>
+            </div>
+            <a routerLink="/history" class="btn">Trở lại</a>
+        </div>
+    </div>
+    
+    <div class="row mb-4 layout-spacing">
+        <div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+    
+            <!--THONG TIN SAN PHAM -->
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Thông tin sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area blog-create-section">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-container">
+                                <table id="inventoryvoucher-table" class="table style-3 dt-table-hover" style="width: 100%">
+                                    <thead class="thead-light">
+                                        <tr>
+                                             <th>STT</th>
+                                            <th>Mã Sản phẩm</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn giá</th>
+                                            <th>Tổng cộng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of orderLine; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.product?.code }}</td>
+                                            <td>{{ item.product?.productName }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ formatCurrencyVND(item.unitPrice) }} </td>
+                                            <td>{{ formatCurrencyVND(item.unitPrice * item.quantity) }} VNĐ</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- THONG TIN THANH TOAN-->
+            <div class="statbox widget box box-shadow mt-4">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Thông tin thanh toán</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area blog-create-section">
+                    <div class="row">
+                        <div class="col-xxl-12">
+                            <div class="d-flex justify-content-between">
+                                <p class="text-start me-1">Tổng tiền:</p>
+                                <b><p>{{ formatCurrencyVND(subTotal) }}</p></b>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-start me-1">Phí vận chuyển:</p>
+                                <b><p>{{formatCurrencyVND(order.shippingFee)}}</p></b>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-start me-1">Giá giảm:</p>
+                                <b><p>{{ formatCurrencyVND(order.orderDiscount)}}</p></b>
+                            </div>
+    
+                     
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <b><p class="text-start me-1">Tổng thanh toán:</p></b>
+                                <b><p class="text-dark text-bold"> {{ formatCurrencyVND(order.orderTotal) }}</p></b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+    
+        </div>
+    
+        <!--THONG TIN NGƯỜI ĐẶT VÀ THÔNG TIN ĐƠN HÀNG-->
+        <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Thông tin người đặt: </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area blog-create-section">
+                    <div class="row">
+                        <div class="col-xxl-12">
+                            <div class="d-flex">
+                                <p class="text-start me-1">Tên :</p>
+                                <b><p class="text-dark text-bold">{{user.name}}</p></b>
+                            </div>
+                            <div class="d-flex">
+                                <p class="text-start me-1">Email :</p>
+                                <b><p class="text-dark text-bold">{{user.email}}</p></b>
+                            </div>
+                            <div class="d-flex">
+                                <p class="text-start me-1">Số điện thoại :</p>
+                                <b><p class="text-dark text-bold">{{user.phone}}</p></b>
+                            </div>
+                            <div class="d-flex">
+                                <p class="text-start me-1">Địa chỉ :</p>
+                                <b><p class="text-dark text-bold">{{user.address}}</p></b>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="statbox widget box box-shadow mt-3">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Thông tin đơn hàng: </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area blog-create-section">
+                    <div class="row">
+                        <div class="col-xxl-12">
+                         
+                          
+                            <div class="d-flex">
+                                <p class="text-start me-1">Voucher áp dụng: :</p>
+                                <b><p class="text-dark text-bold"> {{order.voucher?.id !==null ? order.voucher?.voucherName : "N/A"  }}</p></b>
+                            </div>
+                            <div class="d-flex">
+                                <p class="text-start me-1">Trạng thái đơn hàng:</p>
+                                <b>
+                                    <span 
+                                    class="badge" 
+                                    [ngClass]="{
+                                      'badge-light-success': order.status === 0,
+                                      'badge-light-danger': order.status === 1,
+                                      'badge-light-warning': order.status === 2
+                                    }">
+                                    {{ getStatusText(order.status) }}
+                                  </span>
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+<!--  BEGIN FOOTER  -->
+<app-footer></app-footer>
+
+<!--  END FOOTER  -->
+
+</html>
+<!--
+"src/assets/src/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js",
+              "src/assets/src/plugins/src/mousetrap/mousetrap.min.js",
+              "src/assets/src/plugins/src/waves/waves.min.js"
+-->

@@ -1,0 +1,95 @@
+.open{
+    display: block;
+}
+.product-image-container {
+    width: 492px;
+    height: 556px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+.product-image {
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của container */
+    height: auto; /* Giữ tỷ lệ hình ảnh */
+}
+
+.product-title {
+    font-size: 1.5rem; /* Kích thước tiêu đề sản phẩm */
+    font-weight: bold; /* Đậm */
+}
+
+.discounted-price {
+    font-size: 1.25rem; /* Kích thước giá đã giảm */
+    color: #28a745; /* Màu xanh cho giá đã giảm */
+}
+
+.regular-price {
+    font-size: 1rem; /* Kích thước giá gốc */
+    color: #dc3545; /* Màu đỏ cho giá gốc */
+}
+
+.action-button .btn {
+    font-size: 1rem; /* Kích thước nút */
+    padding: 10px; /* Khoảng cách padding */
+}
+
+.secure-info {
+    display: flex; /* Sử dụng flex để căn chỉnh icon và text */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.secure-info svg {
+    margin-right: 8px; /* Khoảng cách giữa icon và text */
+}
+.quantity-selector {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector input[type="number"] {
+    width: 100%;
+}
+.product-details-content {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.product-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.product-info strong {
+    color: #333;
+}
+.main-container {
+    margin-left: -250px;
+  }

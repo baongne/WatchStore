@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Ecommerce Shop | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+    <!-- <link href="../../../assets/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    -->
+    <link href="../../../assets/layouts/horizontal-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <!--  END CUSTOM STYLE FILE  -->
+</head>
+<div class="sidebar-wrapper sidebar-theme">
+
+    <nav id="sidebar">
+
+        <div class="navbar-nav theme-brand flex-row  text-center">
+            <div class="nav-logo">
+                <div class="nav-item theme-logo">
+                    <a href="./index.html">
+                        <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo">
+                    </a>
+                </div>
+                <div class="nav-item theme-text">
+                    <a href="./index.html" class="nav-link"> CORK </a>
+                </div>
+            </div>
+            <div class="nav-item sidebar-toggle">
+                <div class="btn-toggle sidebarCollapse">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevrons-left">
+                        <polyline points="11 17 6 12 11 7"></polyline>
+                        <polyline points="18 17 13 12 18 7"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="shadow-bottom"></div>
+        <ul class="list-unstyled menu-categories" id="accordionExample">
+
+            <!--
+            <li class="menu menu-heading">
+                <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>APPLICATIONS</span></div>
+            </li>
+-->
+            <!--
+            <li class="menu active">
+                <a href="#ecommerce" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-shopping-cart">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span>Ecommerce</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled show" id="ecommerce" data-bs-parent="#accordionExample">
+                    <li class="active">
+                        <a href="./app-ecommerce-product-shop.html"> Shop </a>
+                    </li>
+                    <li>
+                        <a href="./app-ecommerce-product.html"> Product </a>
+                    </li>
+                    <li>
+                        <a href="./app-ecommerce-product-list.html"> List </a>
+                    </li>
+                    <li>
+                        <a href="./app-ecommerce-product-add.html"> Create </a>
+                    </li>
+                    <li>
+                        <a href="./app-ecommerce-product-edit.html"> Edit </a>
+                    </li>
+                </ul>
+            </li>
+-->
+            <li class="menu">
+                <a [routerLink]="['/home']" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-home">
+                            <path d="M3 12l9-9 9 9"></path>
+                            <path d="M9 21V9h6v12"></path>
+                        </svg>
+                        <span>Trang chủ</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu">
+                <a [routerLink]="['/products']" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-box">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73L12 2 4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l8 4.53 8-4.53a2 2 0 0 0 1-1.73z">
+                            </path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+
+                        <span>Sản phẩm</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu">
+                <a [routerLink]="['/cart']" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-shopping-cart">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span>Giỏ hàng</span>
+                    </div>
+                </a>
+            </li>
+            <!--
+            <li class="menu">
+                <a [routerLink]="['/user-profile/']" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-user">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+
+                        <span>Hồ sơ</span>
+                    </div>
+                </a>
+            </li>
+            -->
+            <li class="menu">
+                <a [routerLink]="['/history']" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-clock">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Lịch sử</span>
+                    </div>
+                </a>
+            </li>
+
+
+
+            <!--
+            <li class="menu">
+                <a href="#menuLevel1" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-list">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        <span>Item Level</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="menuLevel1" data-bs-parent="#accordionExample">
+                    <li>
+                        <a href="javascript:void(0);"> Item Level 1a </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"> Item Level 1b </a>
+                    </li>
+
+                    <li>
+                        <a href="#level-three" data-bs-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle collapsed"> Item Level 1c <svg xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-chevron-right">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg> </a>
+                        <ul class="collapse list-unstyled sub-submenu" id="level-three" data-bs-parent="#pages">
+                            <li>
+                                <a href="javascript:void(0);"> Item Level 2a </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"> Item Level 2b </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"> Item Level 2c </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu">
+                <a href="javascript:void(0);" aria-expanded="false" class="dropdown-toggle disabled">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-list">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        <span>Item Disabled</span>
+                    </div>
+                </a>
+            </li>
+-->
+            
+
+
+        </ul>
+
+    </nav>
+
+</div>
+
+</html>

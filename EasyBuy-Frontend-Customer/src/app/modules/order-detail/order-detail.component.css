@@ -1,0 +1,23 @@
+ thead th {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    color: #333;
+}
+tbody td {
+    vertical-align: middle;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.widget-content-area {
+    padding: 20px !important;
+}
+.content1 {
+    margin-top: 200px;
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    margin-left: auto; /* Căn trái */
+    margin-right: auto; /* Căn phải */
+    padding: 0 15px; /* Thêm khoảng cách giữa nội dung và biên của container */
+}
