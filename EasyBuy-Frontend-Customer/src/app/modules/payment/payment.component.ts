@@ -250,12 +250,10 @@ export class PaymentComponent implements OnInit {
       orderData.voucherId = this.voucherId;
     }
     console.log(this.products);
+    
     let order: Order = await this.addOrder(orderData);
-    
-    
+
     let orderid = order.id;
-
-
     for (let i = 0; i < this.products.length; i++) {
       try {
         let orderlineData: Orderline = {
@@ -271,16 +269,14 @@ export class PaymentComponent implements OnInit {
       }
     }
 
-    if (this.fromCart) {  // Nếu cần xóa sản phẩm trong giỏ hàng
+    if (this.fromCart) {  
       let isDeleted = await this.deleteCartByUserid(this.userId);
       if (!isDeleted) {
         alert('Không thể xóa giỏ hàng. Vui lòng thử lại.');
         return;
       }
     }
-
     alert('Tạo hóa đơn thành công');
     this.router.navigate(['/orderDetail'], { queryParams: { orderId: order.id } });
-
   }
 }

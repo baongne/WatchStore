@@ -69,7 +69,7 @@
                                 
                                     <div class="col-xxl-4 col-xl-5 col-lg-12 col-md-12 col-12 mt-xl-0 mt-5 align-self-center">
                                         <div class="product-details-content">
-                                            <span class="badge badge-light-danger mb-3" *ngIf="product.discount > 0">{{ product.discount * 100 }}% Sale off</span>
+                                            <span class="badge badge-light-danger mb-3" *ngIf="product.discount > 0">Giảm giá {{ product.discount * 100 }}%</span>
                                             <h3 class="product-title mb-0">{{ product.productName }}</h3>
                                             <p class="product-model">Mẫu: {{ product.model }}</p>
                                             <p class="product-color">Màu sắc: {{ product.color }}</p>
@@ -120,7 +120,7 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
                                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                                 </svg>
-                                                <p>Safe and Secure Payments. Easy returns. 100% Authentic products.</p>
+                                                <p>Thanh toán an toàn và bảo mật. Dễ dàng đổi trả. Sản phẩm 100% chính hãng.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -141,12 +141,7 @@
 
                                     <div class="pro-des-content">
 
-
-
-
                                         <div id="iconsAccordion" class="accordion-icons accordion">
-
-
 
                                             <div class="card">
                                                 <div class="card-header" id="headingOne3" (click)="openPD()">
@@ -184,7 +179,6 @@
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-12" [innerHTML]="product.description">
-
 
                                                             </div>
                                                         </div>
@@ -230,38 +224,26 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
 
-                                                                <h5><strong>Shipping methods</strong></h5>
+                                                                <h5><strong>Phương thức giao hàng</strong></h5>
                                                                 <hr />
-                                                                <p class="mb-2">We ship with these shipping options:</p>
-                                                                <p class="mb-5">Duis vehicula lectus condimentum,
-                                                                    tincidunt odio a, posuere magna. Aliquam vitae orci
-                                                                    a metus volutpat sagittis. Quisque volutpat, nulla
-                                                                    non efficitur aliquet, turpis felis fringilla sem,
-                                                                    quis pellentesque erat diam sit amet mi.</p>
+                                                                <p class="mb-2">Chúng tôi giao hàng bằng các tùy chọn giao hàng sau:</p>
+                                                                <p class="mb-5">Duis vehicula lectus condimentum, tincidunt odio a, posuere magna. Aliquam vitae orci a metus volutpat sagittis. Quisque volutpat, nulla non efficitur aliquet, turpis felis fringilla sem, quis pellentesque erat diam sit amet mi.</p>
 
-                                                                <h5><strong>DHL Express</strong></h5>
+                                                                <h5><strong>Giao hàng nhanh</strong></h5>
                                                                 <hr />
-                                                                <p class="mb-3"> Worldwide shipping with DHL Express and
-                                                                    you'll get a tracking number for your order. All
-                                                                    orders usually arrive within 1 business day in North
-                                                                    American countries.</p>
-                                                                <p class="mb-5">Please see estimated delivery
-                                                                    information at checkout.</p>
+                                                                <p class="mb-3">Giao hàng trong khu vực TP.HCM và các tỉnh lân cận với dịch vụ giao hàng nhanh. Đơn hàng của bạn sẽ được giao đến tận nơi trong vòng 1-2 ngày làm việc.</p>
+                                                                <p class="mb-5">Vui lòng kiểm tra thông tin ước lượng giao hàng khi thanh toán.</p>
 
-                                                                <h5><strong>Local pickup in Washington</strong></h5>
+                                                                <h5><strong>Nhận hàng tại cửa hàng ở Sài Gòn</strong></h5>
                                                                 <hr />
-                                                                <p class="mb-3">You can pickup your order from our
-                                                                    office here in Washington. We will send you an
-                                                                    E-mail when your order is ready for pickup. Please
-                                                                    note: In the case of pickup orders, which need to be
-                                                                    sent by US Post at the request of the customer, a
-                                                                    processing fee of USD 10.00 will be charged in
-                                                                    addition to the shipping costs.</p>
+                                                                <p class="mb-3">Bạn có thể đến cửa hàng của chúng tôi tại TP.HCM để nhận hàng. Chúng tôi sẽ gửi Email thông báo khi đơn hàng của bạn đã sẵn sàng để nhận. Lưu ý: Đối với các đơn hàng được yêu cầu gửi qua bưu điện, phí xử lý 10.000 VNĐ sẽ được tính thêm vào chi phí giao hàng.</p>
 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
 
                                         </div>

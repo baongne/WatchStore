@@ -54,9 +54,12 @@ export class ProductDetailComponent implements OnInit {
     return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   }
 
-
-
   onBtnBuy() {
+    if (this.product.stockQuantity < this.quantity || this.quantity < 1) {
+      alert('Số lượng sản phẩm không đủ!!');
+      return;
+    }
+
     let product: productPayment = {
       product: this.product,
       quantity: this.quantity
@@ -67,7 +70,6 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/payment'], { queryParams: { data: encodedCartItems } });
 
   }
-
 
   sendData(data: productBuy[]) {
     this.dataService.changeData(data);
@@ -90,28 +92,10 @@ export class ProductDetailComponent implements OnInit {
       });
     });
   }
-  /*
-  getUserById(id: string): Promise<User> {
-    return new Promise((resolve, reject) => {
-      this.userService.getUserById(id).subscribe({
-        next: (res) => resolve(res),
-        error: (error) => reject(error)
-      });
-    });
-  }
-  getProById(id: string): Promise<Product> {
-    return new Promise((resolve, reject) => {
-      this.productService.getProductById(id).subscribe({
-        next: (res) => resolve(res),
-        error: (error) => reject(error)
-      });
-    });
-  }
-    */
 
   async onBtnAddToCart() {
     if (this.product.stockQuantity < this.quantity || this.quantity < 1) {
-      alert('Số lượng không hợp lệ');
+      alert('Số lượng sản phẩm không đủ!!');
       return;
     }
     let userId = this.getCookie('id') || '';

@@ -35,11 +35,11 @@
             <p class="text-primary">Ngày tạo: {{ convertDateToDMY(order.orderDate) }}</p>
         </div>
         <div>
-            <div *ngIf="order.status!==0">
-                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#statusModal" (click)="goToVnpay()">
-                    Thanh toán VNPAY
-                </button>
-            </div>
+            
+            <button class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#statusModal" (click)="goToVnpay()">
+                Thanh toán VNPAY
+            </button>
+            
             <a routerLink="/history" class="btn">Trở lại</a>
         </div>
     </div>

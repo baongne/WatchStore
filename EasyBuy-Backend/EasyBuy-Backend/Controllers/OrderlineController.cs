@@ -1,5 +1,6 @@
 ﻿using EasyBuy_Backend.Models;
 using EasyBuy_Backend.Repositories.OrderlineRepo;
+using EasyBuy_Backend.Repositories.ProductRepo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyBuy_Backend.Controllers
@@ -9,11 +10,13 @@ namespace EasyBuy_Backend.Controllers
 	public class OrderlineController : ControllerBase
 	{
 		private readonly IOrderlineRepository _orderLineRepository;
+        private readonly IProductRepository _productRepository;
 
-		public OrderlineController(IOrderlineRepository orderLineRepository)
+        public OrderlineController(IOrderlineRepository orderLineRepository, IProductRepository productRepository)
 		{
 			_orderLineRepository = orderLineRepository;
-		}
+            _productRepository = productRepository;
+        }
 
 		[HttpGet]
 		public IActionResult GetAll()
@@ -32,7 +35,11 @@ namespace EasyBuy_Backend.Controllers
 		[HttpPost]
 		public IActionResult Create([FromBody] OrderLine orderLine)
 		{
-			if (_orderLineRepository.Create(orderLine))
+            var product = _productRepository.GetById(orderLine.ProductId);
+            product.StockQuantity -= orderLine.Quantity;
+            _productRepository.Update(product);
+
+            if (_orderLineRepository.Create(orderLine))
 			{
 				return Ok();
 			}

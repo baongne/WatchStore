@@ -38,7 +38,7 @@
                         <h5 class="product-name">{{cart.product.productName}} - {{cart.product.model}} -
                             {{cart.product.color}} - {{cart.product.gender=== "1" ? "Nam" : "Nữ"}}
                         </h5>
-                        <p class="text-muted">Mã sản phẩm: {{cart.product.id}}</p>
+                        <p class="text-muted">Mã sản phẩm: {{cart.product.code}}</p>
                     </div>
                     <div class="col-md-2 text-center">
                         <span
@@ -56,10 +56,9 @@
                             (click)="deleteProductFromCart(cart.id)">Xóa</button>
                     </div>
                 </div>
-                <!-- Repeat cart-item div for each product in the cart -->
             </div>
 
-            <!-- Tổng thanh toán -->
+            <hr>
             <div class="cart-summary mt-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4>Tổng cộng:</h4>
@@ -79,12 +78,7 @@
             </div>
         </div>
         </ng-template>
-        
-        
-
     </div>
-
-
 </body>
 <app-footer></app-footer>
 
