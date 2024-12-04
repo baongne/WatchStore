@@ -1,0 +1,280 @@
+﻿@{
+    ViewData["Title"] = "Thêm Mới Phiếu Nhập";
+}
+@model EasyBuy_Frontend_Admin.Models.InventoryVoucherViewModel
+@using EasyBuy_Frontend_Admin.Models.Enums;
+
+@section Styles {
+        <!-- CSS riêng cho lớp con -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="@Url.Content("~/css/plugins/light/tomSelect/custom-tomSelect.css")">
+        <link rel="stylesheet" href="@Url.Content("~/css/plugins/dark/tomSelect/custom-tomSelect.css")">
+        <link rel="stylesheet" href="@Url.Content("~/lib/plugins/tomSelect/tom-select.default.min.css")">
+        <link rel="stylesheet" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
+        <link rel="stylesheet" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
+        <link rel="stylesheet" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
+        <style>
+            .ts-control{
+                 padding: 12px;
+            }
+        </style>
+}
+
+<div>
+    <!-- BREADCRUMB -->
+    <div class="page-meta">
+        <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Phiếu nhập</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("Index", "InventoryVoucher")">Quản lý Phiếu nhập</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thêm mới Phiếu nhập</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="layout-top-spacing col-12">
+        <a href="@Url.Action("Index", "InventoryVoucher")" class="btn">
+            Trở lại
+        </a>
+    </div>
+
+    <form  id="inventoryVoucherForm" >
+    <div class="row layout-top-spacing">
+        <div id="user-management" class="col-lg-12 layout-spacing">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Thêm mới</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="supplier">Nhà cung cấp<strong class="text-danger">*</strong></label>
+                                    <select id="supplier" asp-for="SupplierId" asp-items="ViewBag.Suppliers"
+                                            class="form-control @(ViewData.ModelState["SupplierId"]?.Errors?.Count > 0 ? "is-invalid" : "")"
+                                            placeholder="Chọn nhà cung cấp" autocomplete="off">
+                                        <option value="">Chọn nhà cung cấp...</option>
+                                    </select>
+                                    <span asp-validation-for="SupplierId" class="invalid-feedback" role="alert"></span>
+                                </div>
+                            </div>
+                        </div>
+                
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="date">Ngày nhập<strong class="text-danger">*</strong></label>
+                                    <input asp-for="Date" id="date" placeholder="Chọn ngày nhập" type="date" class="form-control @(ViewData.ModelState["Date"]?.Errors?.Count > 0 ? "is-invalid" : "")" />
+                                    <span asp-validation-for="Date" class="invalid-feedback" role="alert"></span>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-lg-8 col-md-6 col-12 mb-2 d-flex align-items-center">
+                                <strong class="text-dark">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
+
+                                    Vui lòng chọn nhà cung cấp và ngày nhập trước khi chọn sản phẩm.
+                                </strong>
+                            </div><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="product">Chọn sản phẩm</label>
+                                    <select id="productSelect" class="form-control">
+                                        <option value="">--- Chọn sản phẩm ---</option>
+                                        @foreach (var product in ViewBag.Products)
+                                        {
+                                            <option value="@product.Id" 
+                                                data-code="@product.Code" 
+                                                data-name="@product.ProductName" 
+                                                data-price="@product.ImportPrice">
+                                                (@product.Code) @product.ProductName
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row layout-top-spacing">
+        <div id="product-list-management" class="col-lg-12 layout-spacing">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h4>Danh sách sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area">
+                    <div class="col-12">
+                        <div class="row ms-1 mb-4">* Danh sách sản phẩm của phiếu nhập:</div>
+                        <div class="table-responsive">
+                            <table id="productTable" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10%">ID</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá nhập</th>
+                                        <th style="width:20%" class="text-center">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Hoàn tất</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="inventoryVoucherDetails" name="details" />
+</form>
+
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/lib/plugins/tomSelect/tom-select.base.js")"></script>
+    <script src="@Url.Content("~/lib/plugins/tomSelect/custom-tom-select.js")"></script>
+    <script src="@Url.Content("~/lib/plugins/flatpickr/flatpickr.js")"></script>
+    <script src="@Url.Content("~/lib/plugins/flatpickr/custom-flatpickr.js")"></script>
+
+    <script>
+        $(document).ready(function () {
+            new TomSelect("#supplier", {
+                create: true,
+                sortField: { field: "text", direction: "asc" }
+            });
+
+            new TomSelect("#productSelect", {
+                create: false,
+                sortField: { field: "text", direction: "asc" }
+            });
+
+            function formatCurrency(value) {
+                return value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ';
+            }
+
+            let products = [];
+
+            $('#productSelect').on('change', function () {
+                const productId = $(this).val();
+                const supplierId = $('#supplier').val();
+                const date = $('#date').val();
+                const formattedDate = new Date(date).toISOString(); 
+                const productCode = $('#productSelect option:selected').data('code');
+                const productName = $('#productSelect option:selected').data('name');
+                const productPrice = $('#productSelect option:selected').data('price');
+
+                if (productId) {
+                    $('#productTable tbody').append(`
+                        <tr>
+                            <td>${productId}</td>
+                            <td><span class="badge badge-light-dark">${productCode}</span></td>
+                            <td>${productName}</td>
+                            <td><input type="number" class="form-control quantity" value="1" min="1"></td>
+                            <td class="product-price" data-price="${productPrice}">${formatCurrency(productPrice)}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger btn-sm removeProduct">Xóa</button>
+                            </td>
+                        </tr>
+                    `);
+
+                    products.push({
+                        SupplierId: supplierId,
+                        Date: formattedDate,
+                        ProductId: productId,
+                        ReceivingUnitPrice: productPrice,
+                        Quantity: 1
+                    });
+
+
+                    $('#productSelect')[0].tomselect.clear();
+                }
+            });
+
+             $('#productTable').on('click', '.removeProduct', function () {
+                const row = $(this).closest('tr');
+                const productId = row.find('td').first().text();
+
+                products = products.filter(p => p.productId !== productId);
+
+                row.remove();
+            });
+
+            $('#productTable').on('input', '.quantity', function () {
+                const row = $(this).closest('tr');
+                const quantity = parseInt($(this).val()) || 1; 
+                const productPrice = parseFloat(row.find('.product-price').data('price'));
+
+                const totalPrice = quantity * productPrice;
+                row.find('.product-price').text(formatCurrency(totalPrice));
+
+                const productId = row.find('td').first().text();
+                console.log(productId);
+
+                 const product = products.find(p => p.ProductId == productId);
+
+                if (product) {
+                    product.Quantity = quantity
+                    product.ReceivingUnitPrice = totalPrice;
+                }
+            });
+
+              $('#inventoryVoucherForm').on('submit', function (e) {
+                e.preventDefault();
+
+                if (products.length === 0) {
+                    alert("Bạn phải chọn ít nhất một sản phẩm.");
+                    return false;
+                }
+
+                $.ajax({
+                    url: '/InventoryVoucher/Create',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(products),
+                    success: function (data) {
+                        Snackbar.show({
+                            text: 'Tạo Phiếu nhập thành công. Vui lòng chờ trong giây lát',
+                            textColor: '#ddf5f0',
+                            backgroundColor: '#00ab55',
+                            actionText: 'Bỏ qua',
+                            actionTextColor: '#3b3f5c'
+                        });
+                        setTimeout(function () {
+                            window.location.href = "/InventoryVoucher";
+                        }, 2000); 
+                        
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error gửi yêu cầu: ", error);
+                        alert("Đã có lỗi xảy ra!");
+                    }
+                });
+            });
+
+
+            flatpickr("#date", {
+                enableTime: true,
+                dateFormat: "Y-m-d",
+                minDate: "today",
+            });
+        });
+    </script>
+}

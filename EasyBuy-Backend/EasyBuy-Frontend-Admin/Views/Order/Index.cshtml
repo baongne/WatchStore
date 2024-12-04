@@ -1,0 +1,295 @@
+﻿@{
+    ViewData["Title"] = "Đơn hàng";
+}
+@model List<EasyBuy_Frontend_Admin.Models.OrderViewModel>
+@using EasyBuy_Frontend_Admin.Helpers
+
+<!-- CSS riêng cho lớp con -->
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/light/table/datatable/custom_dt_custom.css">
+    <link rel="stylesheet" type="text/css" href="~/css/plugins/dark/table/datatable/custom_dt_custom.css">
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/plugins/flatpickr/flatpickr.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/dark/flatpickr/custom-flatpickr.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/plugins/light/flatpickr/custom-flatpickr.css")">
+}
+
+<div>
+    <!-- BREADCRUMB -->
+    <div class="page-meta">
+        <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quản lý Đơn hàng</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- /BREADCRUMB -->
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-sm-12">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header d-flex align-items-center ">
+                    <h4 class="m-0">Bộ lọc</h4>
+                </div>
+                <div class="widget-content widget-content-area">
+                <div class="col-lg-12 p-4">
+                    <div id="filterBody" class="row align-items-center">
+                        <div class="col-md-3">
+                            <label for="trainId">Tên người dùng</label>
+                            <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="trainId">Giá bán</label>
+                            <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="trainId">Trạng thái</label>
+                            <select id="status-filter" class="form-control">
+                                <option value="">Chọn</option>
+                                <option value="Thành công">Thành công</option>
+                                <option value="Đã hủy">Đã hủy</option>
+                                <option value="Đang xét duyệt">Đang xét duyệt</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                                <label for="trainId">Khoảng thời gian</label>
+                            <input type="text" id="date-range-filter" class="form-control" placeholder="Chọn khoảng thời gian">
+                        </div>
+                        <hr>
+                        <div class="filter-header d-flex justify-content-end align-items-center">
+
+                            <button type="button" class="btn btn-secondary" id="reset-filters">Xoá bộ lọc</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+    <!-- DATATABLE -->
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-sm-12">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header d-flex align-items-center ">
+                    <h4 class="m-0">Quản lý Đơn hàng</h4>
+                   
+                </div>
+                <!-- Bảng dữ liệu -->
+                <div class="widget-content widget-content-area">
+                    <table id="order-table" class="table style-3 dt-table-hover" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">STT</th>
+                                <th>Mã đơn hàng</th>
+                                <th>Tên người dùng</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Giá giảm</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th class="no-content" style="width: 5%">Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.Id</td>
+                                    <td> <span class="badge badge-dark">@order.Code</span></td>
+                                    <td>
+                                        <p class="text-start me-1">
+                                            Tên:
+                                            <span class="text-primary">@(order.User != null ? order.User.Name : "Không xác định")</span>
+                                        </p>
+                                        <p class="text-start me-1">
+                                            Email:
+                                            <span class="text-primary">@order.User.Email</span>
+                                        </p>
+                                        <p class="text-start me-1">
+                                            Số điện thoại:
+                                            <span class="text-primary">@order.User.PhoneNumber</span>
+                                        </p>
+
+                                    </td>
+                                    <td>@order.OrderDate</td>
+                                    <td>@order.OrderDiscount.ToString("N0") VNĐ</td>
+                                    <td>@order.OrderTotal.ToString("N0") VNĐ</td>
+                                    <td>
+                                        <span class="badge badge-light-@order.Status.GetBadge()">
+                                            @order.Status.GetDisplayName()
+                                        </span>
+                                    </td>
+                                    <td class="table-controls d-flex justify-content-center align-items-center pt-5">
+                                        <li>
+                                            <a href="@Url.Action("Show", "Order", new { id = order.Id })"
+                                               class="bs-tooltip show" data-bs-toggle="tooltip"
+                                               data-bs-placement="top">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                     class="feather feather-eye py-1 br-6 mb-1">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-order-id="@order.Id"
+                                               class="bs-tooltip delete" data-bs-toggle="tooltip"
+                                               data-bs-placement="top">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                     stroke-width="2" stroke-linecap="round"
+                                                     stroke-linejoin="round"
+                                                     class="feather feather-trash p-1 br-6 mb-1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                </svg>
+                                            </a>
+
+                                        </li>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /DATATABLE -->
+
+</div>
+
+<!-- Scripts riêng cho lớp con -->
+@section Scripts {
+    <script src="~/lib/plugins/table/datatable/datatables.js"></script>
+    <script src="~/lib/plugins/table/datatable/extensions/col-reorder/col-reorder.datatables.min.js"></script>
+    <script src="~/lib/plugins/table/datatable/extensions/fixed-columns/fixed-columns.datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        $(document).ready(function () {
+            if (!$.fn.DataTable.isDataTable('#order-table')) {
+                var table = $('#order-table').DataTable({
+                    "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>"
+                        + "<'table-responsive'tr>"
+                        + "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count mb-sm-0 mb-3'i><'dt--pagination'p>>",
+                    "oLanguage": {
+                        "oPaginate": {
+                            "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+                            "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+                        },
+                        "sEmptyTable": "Chưa có dữ liệu",
+                        "sInfo": "Đang hiển thị trang _PAGE_ của _PAGES_",
+                        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                        "sSearchPlaceholder": "Tìm kiếm...",
+                        "sZeroRecords": "Không có bản ghi nào trùng khớp",
+                        "sLengthMenu": "Kết quả : _MENU_"
+                    },
+                    "stripeClasses": [],
+                    "lengthMenu": [7, 10, 20, 50],
+                    "pageLength": 10,
+                    "ordering": false
+                });
+
+                $('#user-name-filter').on('keyup', function () {
+                    table.columns(1).search(this.value).draw();
+                });
+
+                $('#discount-filter').on('keyup change', function () {
+                    table.columns(3).search(this.value).draw();
+                });
+
+                $('#status-filter').on('change', function () {
+                    table.columns(5).search(this.value).draw();
+                });
+
+                flatpickr("#date-range-filter", {
+                    mode: "range",
+                    dateFormat: "Y-m-d",
+                    onChange: function (selectedDates, dateStr, instance) {
+                        if (selectedDates.length === 2) {
+                            var startDate = selectedDates[0].toISOString().split('T')[0];
+                            var endDate = selectedDates[1].toISOString().split('T')[0];
+
+                            $.fn.dataTable.ext.search.push(
+                                function (settings, data, dataIndex) {
+                                    var orderDate = data[2]; 
+                                    if (orderDate) {
+                                        var orderDateParsed = new Date(orderDate).toISOString().split('T')[0];
+                                        return (orderDateParsed >= startDate && orderDateParsed <= endDate);
+                                    }
+                                    return true;
+                                }
+                            );
+
+                            table.draw();
+
+                            $.fn.dataTable.ext.search.pop();
+                        }
+                    }
+                });
+
+                $('#reset-filters').on('click', function () {
+                    $('#user-name-filter').val('');
+                    $('#discount-filter').val('');
+                    $('#status-filter').val('');
+                    $('#date-range-filter').val('');
+
+                    table.columns().search('').draw();
+                    table.rows().show(); 
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            let orderIdToDelete;
+
+            $('.delete').on('click', function (e) {
+                e.preventDefault();
+                orderIdToDelete = $(this).data('order-id');
+                $('#deleteModal').modal('show');
+            });
+
+            $('#confirmDelete').on('click', function () {
+                $.ajax({
+                    url: `/Order/Delete`,
+                    type: 'POST',
+                    data: {
+                        id: orderIdToDelete
+                    },
+                    success: function (response) {
+                        Snackbar.show({
+                            text: 'Xóa đơn hàng thành công',
+                            textColor: '#ddf5f0',
+                            backgroundColor: '#00ab55',
+                            actionText: 'Bỏ qua',
+                            actionTextColor: '#3b3f5c'
+                        });
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function (xhr, status, error) {
+                        Snackbar.show({
+                            text: 'Xóa đơn hàng thất bại',
+                            textColor: '#fbeced',
+                            backgroundColor: '#e7515a',
+                            actionText: 'Bỏ qua',
+                            actionTextColor: '#3b3f5c'
+                        });
+                    }
+                });
+
+                $('#deleteModal').modal('hide');
+            });
+        });
+    </script>
+}

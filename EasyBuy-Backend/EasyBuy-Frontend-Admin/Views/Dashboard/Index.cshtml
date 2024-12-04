@@ -1,0 +1,355 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+@model EasyBuy_Frontend_Admin.Models.DashboardViewModel
+@using EasyBuy_Frontend_Admin.Helpers
+
+@section Styles {
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/plugins/light/apex/apexcharts.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/dark/apex/custom-apexcharts.css")">
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/CSS/assets/light/apex/custom-apexcharts.css")">
+
+	<style>
+		.apexcharts-title-text {
+			font-family: Nunito, sans-serif !important;
+			font-size: 20px;
+			font-weight: 600;
+		}
+
+		.flatpickr-calendar .flatpickr-monthDropdown-months {
+			display: inline-block;
+			width: auto;
+		}
+
+		.flatpickr-calendar .flatpickr-current-month {
+			display: flex;
+			justify-content: space-between;
+		}
+	</style>
+}
+
+
+<div class="middle-content container-xxl p-0">
+	<div class="row layout-top-spacing">
+
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="row widget-statistic">
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+					<div class="widget widget-one_hybrid widget-followers">
+						<div class="widget-heading">
+							<div class="w-title">
+								<div class="w-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-watch"><circle cx="12" cy="12" r="7"></circle><polyline points="12 9 12 12 13.5 13.5"></polyline><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83"></path></svg>
+									<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+									<line x1="7" y1="7" x2="7.01" y2="7"></line>
+									</svg>
+								</div>
+								<div class="">
+									 <p class="w-value">@Model.TotalProducts</p>
+									<h5 class="">Sản phẩm</h5>
+								</div>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="w-chart">
+								<div id="hybrid_followers1"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+					<div class="widget widget-one_hybrid widget-referral">
+						<div class="widget-heading">
+							<div class="w-title">
+								<div class="w-icon">
+									<svg xmlns="http://www.w3.org/2000/svg"
+										 width="24" height="24" viewBox="0 0 24 24"
+										 fill="none" stroke="currentColor" stroke-width="2"
+										 stroke-linecap="round" stroke-linejoin="round"
+										 class="feather feather-tag">
+										<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+										<line x1="7" y1="7" x2="7.01" y2="7"></line>
+									</svg>
+								</div>
+								<div class="">
+									<p class="w-value">@Model.TotalCategories</p>
+									<h5 class="">Danh mục</h5>
+								</div>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="w-chart">
+								<div id="hybrid_followers2"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+					<div class="widget widget-one_hybrid widget-engagement">
+						<div class="widget-heading">
+							<div class="w-title">
+								<div class="w-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+									viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+									class="feather feather-box">
+									<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+									<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+									<line x1="12" y1="22.08" x2="12" y2="12"></line>
+								</svg>
+								</div>
+								<div class="">
+									<p class="w-value">@Model.TotalOrders</p>
+									<h5 class="">Đơn hàng</h5>
+								</div>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="w-chart">
+								<div id="hybrid_followers3"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+
+					<div class="widget widget-one_hybrid widget-referral">
+						<div class="widget-heading">
+							<div class="w-title">
+								<div class="w-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+										 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+										 class="feather feather-user">
+										<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+										<circle cx="12" cy="7" r="4"></circle>
+									</svg>
+								</div>
+								<div class="">
+									<p class="w-value">@Model.TotalCustomers</p>
+									<h5 class="">Khách hàng</h5>
+								</div>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="w-chart">
+								<div id="hybrid_followers4"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+					<div class="widget widget-one_hybrid widget-followers">
+						<div class="widget-heading">
+							<div class="w-title">
+								<div class="w-icon">
+									<svg xmlns="http://www.w3.org/2000/svg"
+										 width="24" height="24" viewBox="0 0 24 24" fill="none"
+										 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+										 class="feather feather-edit-2">
+										<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+									</svg>
+								</div>
+								<div class="">
+									<p class="w-value">@Model.TotalInventoryVouchers</p>
+									<h5 class="">Phiếu nhập</h5>
+								</div>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="w-chart">
+								<div id="hybrid_followers5"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<div class="statbox widget box box-shadow">
+		<div class="widget-header">
+			<div class="row">
+				<div id="chartLine" class="col-lg-12 layout-spacing">
+					<div class="statbox widget box box-shadow">
+						<div class="layout-top-spacing col-12">
+						</div>
+						<div id="s-line"></div>
+						<div id="order-quantity"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="@Url.Content("~/lib/plugins/apex/apexcharts.min.js")"></script>
+	<script src="@Url.Content("~/lib/plugins/apex/custom-apexcharts.js")"></script>
+
+	<script>
+		async function fetchOrderStatistics() {
+			try {
+				const response = await fetch('https://localhost:7084/api/Order/statistics');
+				if (!response.ok) throw new Error('Failed to fetch data');
+
+				const data = await response.json();
+
+				const today = new Date();
+				const categories = [];
+				const seriesData = [];
+
+				for (let i = 14; i >= 0; i--) {
+					const date = new Date(today);
+					date.setDate(today.getDate() - i);
+
+					const formattedDate = date.toLocaleDateString('en-GB'); 
+					categories.push(formattedDate);
+
+					seriesData.push(data[formattedDate] || 0);
+				}
+
+				renderChart(categories, seriesData);
+			} catch (error) {
+				console.error('Error fetching order statistics:', error);
+			}
+		}
+		
+		function renderChart(categories, seriesData) {
+			const existingChart = document.querySelector('#s-line');
+			if (existingChart) {
+				existingChart.innerHTML = ''; 
+			}
+
+			var sline = {
+				chart: {
+					height: 350,
+					type: 'line',
+					zoom: { enabled: true },
+					toolbar: {
+						show: true,
+						offsetX: 0,
+						offsetY: 25,
+					},
+					dropShadow: { enabled: true, top: 3, left: 3, blur: 5, opacity: 0.1 } 
+				},
+				dataLabels: { enabled: false },
+				stroke: {
+					curve: 'smooth',  
+					width: 3 
+				},
+				plotOptions: {
+					bar: {
+						columnWidth: '50%'
+					}
+				},
+				series: [{
+					name: "Số lượng",
+					data: seriesData
+				}],
+				fill: {
+					opacity: [1],
+					gradient: {
+						inverseColors: false,
+						shade: 'light',
+						type: "vertical",
+						opacityFrom: 0.85,
+						opacityTo: 0.55,
+						stops: [0, 100, 100, 100]
+					}
+				},
+				title: {
+					text: 'Số lượng đơn hàng (15 ngày gần nhất)',
+					align: 'left',
+					style: {
+						fontSize: '18px',
+						fontWeight: 'bold',
+						color: '#333'
+					}
+				},
+				grid: {
+					show: true,
+					borderColor: '#e5e5e5',
+					strokeDashArray: 5, 
+					opacity: 0.1,
+					yaxis: {
+						lines: { show: true } 
+					}
+				},
+				xaxis: {
+					categories: categories,
+					title: {
+						style: {
+							fontSize: '12px',
+							color: '#777'
+						}
+					},
+					tickAmount: 6, 
+					tickPlacement: 'on', 
+					labels: {
+						style: {
+							fontSize: '10px',
+							color: '#777'
+						}
+					}
+				},
+				yaxis: {
+					title: {
+						text: '',
+						style: {
+							fontSize: '12px',
+							color: '#777'
+						}
+					},
+					labels: {
+						style: {
+							fontSize: '10px',
+							color: '#777'
+						}
+					}
+				},
+				tooltip: {
+					enabled: true,
+					shared: true,
+					intersect: false,
+					y: {
+						formatter: function (val) {
+							return val + ' đơn hàng'; 
+						}
+					}
+				},
+				colors: ['#007bff'], 
+				legend: {
+					position: 'top',
+					horizontalAlign: 'center',
+					offsetX: 0,
+					offsetY: 5,
+					fontSize: '12px',
+					fontWeight: 600
+				},
+				markers: {
+					size: 6, 
+					colors: ['#FF0000'], 
+					strokeColor: '#ffffff',  
+					strokeWidth: 2,  
+					hover: {
+						size: 8, 
+						colors: ['#FF6347'],  
+						strokeColor: '#ffffff',  
+						strokeWidth: 2
+					}
+				}
+			};
+
+			var chart = new ApexCharts(
+				document.querySelector("#s-line"),
+				sline
+			);
+
+			chart.render();
+		}
+
+		document.addEventListener('DOMContentLoaded', fetchOrderStatistics);
+	</script>
+}
