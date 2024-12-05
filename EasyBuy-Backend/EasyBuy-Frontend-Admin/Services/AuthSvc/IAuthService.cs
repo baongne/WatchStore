@@ -6,6 +6,6 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
     public interface IAuthService
     {
         Task<bool> Register(SignUpDTO signUpDTO);
-        Task<SignInDTO> Login(SignInDTO signInDTO);
+        Task<string?> Login(SignInDTO signInDTO);
     }
 }

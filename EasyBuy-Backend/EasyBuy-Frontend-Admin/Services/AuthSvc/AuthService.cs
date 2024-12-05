@@ -37,22 +37,23 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
         }
 
         // Phương thức đăng nhập
-        public async Task<SignInDTO> Login(SignInDTO signInDTO)
+        public async Task<string?> Login(SignInDTO signInDTO)
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/Auth/Login", signInDTO);
+                HttpResponseMessage response = await _httpClient.PostAsJsonAsync("/api/Auth/Login", signInDTO);
 
-				if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var user = await response.Content.ReadFromJsonAsync<SignInDTO>();
-                    return user; 
+                    var responseData = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
+                    if (responseData != null && responseData.TryGetValue("token", out string? token))
+                    {
+                        return token;
+                    }
                 }
-                else
-                {
-                    Debug.WriteLine("Đăng nhập không thành công. Trạng thái: " + response.StatusCode);
-                    return null;
-                }
+
+                Debug.WriteLine("Đăng nhập không thành công. Trạng thái: " + response.IsSuccessStatusCode);
+                return null;
             }
             catch (Exception ex)
             {
@@ -60,5 +61,6 @@ namespace EasyBuy_Frontend_Admin.Services.AuthSvc
                 return null;
             }
         }
+
     }
 }

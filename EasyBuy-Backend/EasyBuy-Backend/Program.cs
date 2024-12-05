@@ -58,12 +58,13 @@ builder.Services.AddAuthentication(options =>
 	};
 });
 
-//builder.Services.AddAuthorization(options => {
-//	options.AddPolicy("Admin", policy => policy.RequireClaim("role", "admin"));
-//	options.AddPolicy("Customer", policy => policy.RequireClaim("role", "customer"));
-//});
+builder.Services.AddAuthorization(options => {
+	options.AddPolicy("Admin", policy => policy.RequireClaim("role", "admin"));
+	options.AddPolicy("Customer", policy => policy.RequireClaim("role", "customer"));
+});
 
 builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 

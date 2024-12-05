@@ -14,6 +14,7 @@ body {
 }
 
 .checkout-container {
+    margin-top: 70px;
     width: 800px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -199,6 +200,6 @@ body {
     color: #4e2a8e;
 }
 .order-summary{
-    margin-top: -350px;
+    margin-top: -300px;
     margin-left: 30px;
 }
