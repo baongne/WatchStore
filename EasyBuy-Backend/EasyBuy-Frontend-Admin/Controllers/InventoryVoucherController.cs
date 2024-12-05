@@ -39,7 +39,9 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			List<ProductViewModel> products = await _productService.GetProductsAsync();
 
 			ViewBag.Suppliers = new SelectList(suppliers, "Id", "Name");
-			ViewBag.Products = products;
+            products = products.Where(p => p.Status != Models.Enums.ProductStatus.DISCONTINUED).ToList();
+
+            ViewBag.Products = products;
 
 			return View();
 		}

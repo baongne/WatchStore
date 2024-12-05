@@ -22,7 +22,8 @@ namespace EasyBuy_Frontend_Admin.Services.ProductSvc
 				HttpResponseMessage response = await _httpClient.GetAsync("/api/Product");
 				string data = await response.Content.ReadAsStringAsync();
 				products = JsonSerializer.Deserialize<List<ProductViewModel>>(data);
-				Debug.WriteLine("An error occurred: " ,data);
+
+                Debug.WriteLine("An error occurred: " ,data);
 			}
 			catch (Exception ex)
 			{
