@@ -12,7 +12,7 @@ namespace EasyBuy_Backend.Services
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             // Register services here
-            services.AddHttpClient<IAuthService, AuthService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<IInventoryVoucherRepository, InventoryVoucherRepository>();
             services.AddScoped<ICartRepository, CartRepository>();

@@ -26,9 +26,7 @@ namespace EasyBuy_Backend.Services.AuthSvc
 		{
 			try
 			{
-				user.Password = HashPassword(user.Password);
-
-				if (_userRepository.Create(user))
+                if (_userRepository.Create(user))
 				{
 					return GenerateToken(user); 
 				}
@@ -96,20 +94,18 @@ namespace EasyBuy_Backend.Services.AuthSvc
 			return tokenHandler.WriteToken(token);
 		}
 
-
-		private string HashPassword(string password)
-		{
-			using (var sha256 = SHA256.Create())
-			{
-				var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-				return Convert.ToBase64String(bytes);
-			}
-		}
+		//private string HashPassword(string password)
+		//{
+		//	using (var sha256 = SHA256.Create())
+		//	{
+		//		var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+		//		return Convert.ToBase64String(bytes);
+		//	}
+		//}
 
 		private bool VerifyPassword(string hashedPassword, string password)
 		{
-			var hashedInputPassword = HashPassword(password);
-			return hashedInputPassword == hashedPassword;
+			return password == hashedPassword;
 		}
 	}
 }

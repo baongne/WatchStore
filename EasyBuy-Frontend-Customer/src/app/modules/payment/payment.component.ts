@@ -222,10 +222,6 @@ export class PaymentComponent implements OnInit {
     });
   }
   async onThanhToan() {
-    if (this.paymentId === -1) {
-      alert('Chưa chọn phương thức thanh toán')
-      return;
-    }
     let order_date = new Date();
     let shipping_fee = this.shippingPrice;
     let order_discount = this.voucherPrice;
@@ -234,7 +230,7 @@ export class PaymentComponent implements OnInit {
     let status = 2;
     let code = "DH-00";
     let userid = this.userId;
-    let paymentId = this.paymentId;
+    let paymentId = 1;
     let orderData: Order = {
       orderDate: order_date,
       shippingFee: shipping_fee,

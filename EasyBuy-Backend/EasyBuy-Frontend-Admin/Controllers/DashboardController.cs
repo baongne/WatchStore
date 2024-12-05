@@ -24,7 +24,6 @@ namespace EasyBuy_Frontend_Admin.Controllers
             if (!string.IsNullOrEmpty(userJson))
             {
                 UserViewModel user = JsonSerializer.Deserialize<UserViewModel>(userJson);
-                Debug.WriteLine($"Tên: {user.Name}, Email: {user.Email}");
             }
             else
             {

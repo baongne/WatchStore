@@ -14,6 +14,7 @@
 
 <body>
     <div class="checkout-container">
+        
         <div class="section-title">Thông Tin Thanh Toán</div>
         <!-- THÔNG TIN NGƯỜI DÙNG-->
         <div class="shipping-info section-content">
@@ -34,15 +35,27 @@
         </div>
         <!--PHƯƠNG THỨC THANH TOÁN-->
         <div class="payment-methods section-content">
-            <h4>Phương thức thanh toán</h4>
-            <div class="payment-methods-grid">
-                
-                <div class="payment-option" (click)="changePayMethod(payment.id)"
-                    [class.selected]="paymentId === payment.id" *ngFor="let payment of payments">{{payment.paymentName}}
+            <div class="widget-content widget-content-area">
+                <h4>Phương thức thanh toán</h4>
+                <div class="list-group">
+                    <div class="list-group-item d-flex justify-content-between align-items-start p-3">
+                        <img src="../src/assets/img/logovnpay13136-gcgc-200h.png" class="align-self-center me-3" alt="mastercard">
+                        <div class="me-auto">
+                            <div class="fw-bold title">Vnpay</div>
+                            <p class="sub-title mb-0">Thanh toán qua Vnpay</p>
+                        </div>
+                        <span class="badge badge-success align-self-center me-3">Primary</span>
+                    </div>
+                    
+                    
                 </div>
+                <div class="payment-methods-grid" style="display: none;">
+                    
+                    <div class="payment-option" (click)="changePayMethod(payment.id)"
+                        [class.selected]="paymentId === payment.id" *ngFor="let payment of payments">{{payment.paymentName}}
+                    </div>
 
-                
-
+                </div>
             </div>
         </div>
 
@@ -53,7 +66,7 @@
                 style="flex: 1; padding: 8px; border: 1px solid #d8c1f5; border-radius: 5px;">
             <button class="apply-btn" (click)="setVoucher()">Áp dụng</button>
         </div>
-        <button class="checkout-btn" (click)="onThanhToan()">Thanh Toán</button>
+        <button class="checkout-btn" (click)="onThanhToan()">Tạo đơn hàng</button>
     </div>
     <!--DANH SÁCH SẢN PHẨM-->
     <div class="order-summary section-content p-3 bg-light rounded shadow-sm">
@@ -77,6 +90,7 @@
                     <td></td>
                     <td class="text-right text-danger">-{{formatCurrencyVND(voucherPrice)}}</td>
                 </tr>
+                <hr>
                 <tr class="order-total font-weight-bold">
                     <td class="text-uppercase">Tổng thanh toán</td>
                     <td></td>

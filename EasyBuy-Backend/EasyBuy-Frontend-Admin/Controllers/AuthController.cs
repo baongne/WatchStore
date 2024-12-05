@@ -33,32 +33,39 @@ namespace EasyBuy_Frontend_Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> SignIn(SignInDTO signInDTO)
-		{
-			if (ModelState.IsValid)
-			{
-				var result = _authService.Login(signInDTO);
+        public async Task<IActionResult> SignIn(SignInDTO signInDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var token = await _authService.Login(signInDTO);
+                if (string.IsNullOrEmpty(token))
+                {
+                    TempData["Error"] = "Đăng nhập không thành công.";
+                    return View(signInDTO);
+                }
 
-                UserViewModel user = await _userService.GetUserByEmailAsync(signInDTO.Email);
+                UserViewModel? user = await _userService.GetUserByEmailAsync(signInDTO.Email);
+                if (user == null || user.Role != Models.Enums.UserRole.ADMIN)
+                {
+                    TempData["Error"] = user == null
+                        ? "Không tìm thấy thông tin người dùng."
+                        : "Tài khoản của bạn không có quyền để truy cập.";
+                    return View(signInDTO);
+                }
 
-                if (result != null)
-				{
-					HttpContext.Session.SetString("IsAuthenticated", "True");
+                HttpContext.Session.SetString("IsAuthenticated", "True");
+                HttpContext.Session.SetString("AuthToken", token);
+                string userJson = JsonSerializer.Serialize(user);
+                HttpContext.Session.SetString("CurrentUser", userJson);
 
-                    string userJson = JsonSerializer.Serialize(user);
-                    HttpContext.Session.SetString("CurrentUser", userJson);
+                TempData["Success"] = "Đăng nhập thành công.";
+                return RedirectToAction("Index", "Dashboard");
+            }
 
-                    TempData["Success"] = "Đăng nhập thành công.";
-					return RedirectToAction("Index", "Dashboard");  
-				}
+            return View(signInDTO);
+        }
 
-				ModelState.AddModelError("", "Đăng nhập không thành công.");
-			}
-
-			return View(signInDTO); 
-		}
-
-		[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(SignUpDTO signUpDTO)
         {
