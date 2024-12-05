@@ -1,4 +1,10 @@
-﻿<div class="sidebar-wrapper sidebar-theme">
+﻿@using Newtonsoft.Json
+@{
+	var currentUserJson = Context.Session.GetString("CurrentUser");
+	var currentUser = currentUserJson != null ? JsonConvert.DeserializeObject<UserViewModel>(currentUserJson) : null;
+}
+
+<div class="sidebar-wrapper sidebar-theme">
 
 	<nav id="sidebar">
 
@@ -28,7 +34,7 @@
 					<img src="/images/profile-30.png" alt="avatar">
 				</div>
 				<div class="profile-content">
-					<h6 class="">Đại ca</h6>
+					<h6 class="">@currentUser.Name</h6>
 					<p class="">Quản trị viên</p>
 				</div>
 			</div>

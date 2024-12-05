@@ -1,4 +1,9 @@
-﻿<div class="header-container container-xxl">
+﻿@using Newtonsoft.Json
+@{
+	var currentUserJson = Context.Session.GetString("CurrentUser");
+	var currentUser = currentUserJson != null ? JsonConvert.DeserializeObject<UserViewModel>(currentUserJson) : null;
+}
+<div class="header-container container-xxl">
 	<header class="header navbar navbar-expand-sm expand-header">
 
 		<a href="javascript:void(0);" class="sidebarCollapse">
@@ -86,7 +91,7 @@
 						<div class="media mx-auto">
 							<div class="emoji me-2">&#x1F44B;</div>
 							<div class="media-body">
-								<h5>Đại ca</h5>
+								<h5>@currentUser.Name</h5>
 								<p>Quản trị viên</p>
 							</div>
 						</div>
