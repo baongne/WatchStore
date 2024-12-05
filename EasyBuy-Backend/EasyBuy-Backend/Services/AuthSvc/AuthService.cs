@@ -45,6 +45,11 @@ namespace EasyBuy_Backend.Services.AuthSvc
 			try
 			{
 				var user = _userRepository.GetByEmail(email);
+				if (user.Status != Models.Enums.UserStatus.ENABLE)
+				{
+                    return null;
+                }
+
 				if (user != null && VerifyPassword(user.Password, password))
 				{
 					return GenerateToken(user); 

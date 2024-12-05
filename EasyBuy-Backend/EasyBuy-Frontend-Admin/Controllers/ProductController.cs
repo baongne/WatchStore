@@ -24,7 +24,6 @@ namespace EasyBuy_Frontend_Admin.Controllers
 		{
 			List<ProductViewModel> products = await _productService.GetProductsAsync();
 			List<CategoryViewModel> categories = await _categoryService.GetCategoriesAsync();
-
 			foreach (var product in products)
 			{
 				product.CategoryName = categories.FirstOrDefault(c => c.Id == product.CategoryId)?.Name;
