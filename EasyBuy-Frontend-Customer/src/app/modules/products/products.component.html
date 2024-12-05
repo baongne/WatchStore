@@ -95,7 +95,19 @@
                                 <option value="caovethap">Giá cao về thấp</option>
                             </select>
                         </div>
-                      
+                      <!-- OPTION MODEL -->
+                      <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4">
+                        <select class="form-select form-select" aria-label="Default select example"  [(ngModel)]="filterObj.model" (change)="updateFilters()">
+                            <option value="all">Mẫu đồng hồ</option>
+                            <option value="Đồng hồ kim">Đồng hồ kim</option>
+                            <option value="Đồng hồ điện tử">Đồng hồ điện tử</option>
+                            <option value="Đồng hồ thông minh">Đồng hồ thông minh</option>
+                            <option value="Đồng hồ lai">Đồng hồ lai</option>
+                            <option value="Đồng hồ bấm giờ">Đồng hồ bấm giờ</option>
+                            <option value="Đồng hồ cao cấp">Đồng hồ cao cấp</option>
+                            <option value="Đồng hồ thể thao">Đồng hồ thể thao</option>
+                        </select>
+                    </div>
                         
                         <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4 ms-auto">
                             <select class="form-select form-select" aria-label="Default select example"  [(ngModel)]="filterObj.categoryId" (change)="updateFilters()">

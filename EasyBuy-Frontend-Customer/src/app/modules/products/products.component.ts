@@ -30,7 +30,8 @@ export class ProductsComponent implements OnInit {
     'Sort': 'all',
     'categoryId': 0,
     'priceMin': this.minPrice,
-    'priceMax': this.maxPrice
+    'priceMax': this.maxPrice,
+    'model': 'all'
   };
   totalPages = 0;
   // TÍNH TỔNG SỐ TRANG
@@ -60,6 +61,7 @@ export class ProductsComponent implements OnInit {
       this.filterObj.Sort = params['sort'] || 'all';
       this.filterObj.priceMin = params['min'] || this.minPrice;
       this.filterObj.priceMax = params['max'] || this.maxPrice;
+      this.filterObj.model = params['model'] || 'all';
 
     });
     this.getAllCategories();
@@ -136,6 +138,7 @@ export class ProductsComponent implements OnInit {
         sort: this.filterObj.Sort !== 'all' ? this.filterObj.Sort : null,
         min: this.filterObj.priceMin !== this.minPrice ? this.filterObj.priceMin : null,
         max: this.filterObj.priceMax !== this.maxPrice ? this.filterObj.priceMax : null,
+        model: this.filterObj.model !== 'all' ? this.filterObj.model : null,
 
 
       },
@@ -147,13 +150,16 @@ export class ProductsComponent implements OnInit {
     let categoryid = Number(this.filterObj.categoryId);
     let gender = this.filterObj.Gender;
     let sort = this.filterObj.Sort;
+    let model = this.filterObj.model;
     if (categoryid !== 0) {
       this.products = this.products.filter(p => p.categoryId === categoryid);
     }
     if (gender !== 'all') {
       this.products = this.products.filter(p => p.gender.toLowerCase() === gender.toLowerCase());
     }
-
+    if (model !== 'all') {
+      this.products = this.products.filter(p => p.model.toLowerCase() === model.toLowerCase());
+    }
     this.products = this.products.filter(p => {
       const priceAfterDiscount = (1 - p.discount) * p.priceToSell;
       return priceAfterDiscount >= this.filterObj.priceMin && priceAfterDiscount <= this.filterObj.priceMax;
@@ -170,6 +176,8 @@ export class ProductsComponent implements OnInit {
         sort: this.filterObj.Sort !== 'all' ? this.filterObj.Sort : null,
         min: this.filterObj.priceMin !== this.minPrice ? this.filterObj.priceMin : null,
         max: this.filterObj.priceMax !== this.maxPrice ? this.filterObj.priceMax : null,
+        model: this.filterObj.model !== 'all' ? this.filterObj.model : null,
+
       },
       queryParamsHandling: 'merge'
     });

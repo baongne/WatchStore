@@ -28,7 +28,8 @@ namespace EasyBuy_Frontend_Admin.Controllers
 			foreach (var product in products)
 			{
 				product.CategoryName = categories.FirstOrDefault(c => c.Id == product.CategoryId)?.Name;
-			}
+                product.Discount *= 100;
+            }
 			return View(products);
 		}
 
