@@ -44,8 +44,8 @@
                             <input type="text" id="user-name-filter" class="form-control" placeholder="Tìm theo tên người dùng">
                         </div>
                         <div class="col-md-3">
-                                <label for="trainId">Giá bán</label>
-                            <input type="number" id="discount-filter" class="form-control" placeholder="Tìm theo giá giảm">
+                                <label for="trainId">Tổng tiền</label>
+                            <input type="text" id="discount-filter" class="form-control" placeholder="Tìm theo tổng tiền">
                         </div>
                         <div class="col-md-3">
                                 <label for="trainId">Trạng thái</label>
@@ -197,15 +197,15 @@
                 });
 
                 $('#user-name-filter').on('keyup', function () {
-                    table.columns(1).search(this.value).draw();
+                    table.columns(2).search(this.value).draw();
                 });
 
                 $('#discount-filter').on('keyup change', function () {
-                    table.columns(3).search(this.value).draw();
+                    table.columns(5).search(this.value).draw();
                 });
 
                 $('#status-filter').on('change', function () {
-                    table.columns(5).search(this.value).draw();
+                    table.columns(6).search(this.value).draw();
                 });
 
                 flatpickr("#date-range-filter", {
@@ -218,7 +218,7 @@
 
                             $.fn.dataTable.ext.search.push(
                                 function (settings, data, dataIndex) {
-                                    var orderDate = data[2]; 
+                                    var orderDate = data[3]; 
                                     if (orderDate) {
                                         var orderDateParsed = new Date(orderDate).toISOString().split('T')[0];
                                         return (orderDateParsed >= startDate && orderDateParsed <= endDate);
